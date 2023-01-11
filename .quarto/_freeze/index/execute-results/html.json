@@ -1,8 +1,10 @@
 {
-  "hash": "9fe9ac253b4a2324391a8638421ffdf0",
+  "hash": "59dc85ae442e19e5aabbf9a6c1d9195f",
   "result": {
-    "markdown": "---\ntitle: \"ISSS608-VAA-Liang Minghao\"\n---\n\n\n**Welcome to my ISSS608 Visual Analytics and Application portfolio webpage!**\n\n## code block\n\n\n::: {.cell}\n\n```{.r .cell-code}\na=0\nfor (i in 1:10){\n  a=a+i\n}\na\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 55\n```\n:::\n:::\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"ISSS608-VAA-Liang Minghao\"\n---\n\n\n**Welcome to my ISSS608 Visual Analytics and Application portfolio webpage!**\n\n## code block\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(gapminder)\nlibrary(ggplot2)\nlibrary(tidyverse)\n```\n\n::: {.cell-output .cell-output-stderr}\n```\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n✔ tibble  3.1.8      ✔ dplyr   1.0.10\n✔ tidyr   1.2.1      ✔ stringr 1.5.0 \n✔ readr   2.1.3      ✔ forcats 0.5.2 \n✔ purrr   1.0.0      \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\n```\n:::\n\n```{.r .cell-code}\ngap<-gapminder\noptions(repr.plot.width = 5, repr.plot.height =2)\ngap %>%\n  filter(year==2007, continent=='Asia') %>%\n  ggplot(aes(x=country, y=pop),height = 10 , width = 50) + geom_bar(stat='identity')\n```\n\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

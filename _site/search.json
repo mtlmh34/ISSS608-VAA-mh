@@ -2,9 +2,16 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "ISSS608-VAA-mh",
+    "title": "ISSS608-VAA-Liang Minghao",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "Welcome to my ISSS608 Visual Analytics and Application portfolio webpage!"
+  },
+  {
+    "objectID": "index.html#code-block",
+    "href": "index.html#code-block",
+    "title": "ISSS608-VAA-Liang Minghao",
+    "section": "code block",
+    "text": "code block\n\na=0\nfor (i in 1:10){\n  a=a+i\n}\na\n\n[1] 55"
   },
   {
     "objectID": "about.html",

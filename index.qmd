@@ -1,7 +1,36 @@
 ---
-title: "ISSS608-VAA-Liang Minghao"
+title: "Liang Minghao's Visual Analytics Portfolio"
+image: IMG_9043.jpg
+about:
+  template: solana
+  id: hero-heading
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/minghao-liang34/
+    - icon: github
+      text: Github
+      href: https://github.com/mtlmh34
 ---
+:::{#hero-heading}
 
-**Welcome to my ISSS608 Visual Analytics and Application portfolio webpage**
+This website shows the collection of my visual analytics exercises and projects.
+Hope you enjoy my works!
 
-## Some text and messages
+## Education
+
+Singapore Management University | 
+Master of IT in Business (Analytics) | 
+Jan 2022 - Apr 2023
+
+University of Wollongong | 
+Bachelor in Computer Science | 
+Oct 2018 - Sep 2021
+
+## Experience
+
+United Parcel Service | Data Scientist Intern | May 2022 - Nov 2022
+
+:::
+
+

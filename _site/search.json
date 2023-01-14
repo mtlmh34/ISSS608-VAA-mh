@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "ISSS608-VAA-Liang Minghao",
+    "title": "Liang Minghao’s Visual Analytics Portfolio",
     "section": "",
-    "text": "Welcome to my ISSS608 Visual Analytics and Application portfolio webpage"
+    "text": "LinkedIn\n  \n  \n    \n     Github\n  \n\n      \nThis website shows the collection of my visual analytics exercises and projects. Hope you enjoy my works!\n\n\nSingapore Management University | Master of IT in Business (Analytics) | Jan 2022 - Apr 2023\nUniversity of Wollongong | Bachelor in Computer Science | Oct 2018 - Sep 2021\n\n\n\nUnited Parcel Service | Data Scientist Intern | May 2022 - Nov 2022"
   },
   {
     "objectID": "index.html#code-block",
@@ -33,5 +33,12 @@
     "title": "ISSS608-VAA-Liang Minghao",
     "section": "Some text and messages",
     "text": "Some text and messages"
+  },
+  {
+    "objectID": "index.html#about-this-blog",
+    "href": "index.html#about-this-blog",
+    "title": "Liang Minghao’s Visual Analytics Portfolio",
+    "section": "About this blog",
+    "text": "About this blog"
   }
 ]

@@ -84,15 +84,29 @@ ggplot(data = d,
 ### The makeover design 3
 *The background histograms show the distribution of English scores for all pupils
 ```{r}
+# duplicate a new dataset without gender
+no_gender <- subset(d, select=-c(GENDER))
 
-
+#fill diff. colour by gender
+ggplot(d, aes(x=ENGLISH,fill=GENDER))+
+  #plot background using duplicate dataset
+  geom_histogram(data = no_gender, fill = "grey",binwidth = 2.5,alpha = 0.5)+
+  #plot foreground
+  geom_histogram(binwidth = 2.5, color = "black")+
+  #facet by gender
+  facet_wrap(~GENDER)
 ```
 
 ### The makeover design 4
 *A within group scatterplot with reference lines
 ```{r}
-
-
+ggplot(data=d,
+       aes(x = MATHS,y=ENGLISH)) +
+  geom_point()+
+  xlim(0,100)+
+  ylim(0,100)+
+  geom_vline(xintercept = 50, alpha=.5, linetype = "longdash") +
+  geom_hline(yintercept = 50, alpha=.5, linetype = "longdash")
 ```
 
 

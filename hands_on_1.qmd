@@ -9,6 +9,7 @@ library(tidyverse)
 
 d <- read.csv('/Users/minghaooo/Documents/Term 4/ISSS608-Visual Analytics/inclass-1/Exam_data.csv')
 options(repr.plot.width = 5, repr.plot.height =2)
-d %>%
-  ggplot(aes(x=CLASS, y=MATHS),height = 10 , width = 50) + geom_bar(stat = "summary",fun = "mean")
+
+ggplot(d, aes(x=CLASS, y=MATHS),height = 10 , width = 50) + geom_bar(stat = "summary",fun = "mean")
+ggplot(d, aes(x=CLASS, y=MATHS)) + geom_boxplot()+facet_grid(rows=vars(GENDER))
 ```

@@ -219,10 +219,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'/Users/minghaooo/Documents/Term 4/ISSS608-Visual Analytics/inclass-1/Exam_data.csv'</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repr.plot.width =</span> <span class="dv">5</span>, <span class="at">repr.plot.height =</span><span class="dv">2</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>d <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>CLASS, <span class="at">y=</span>MATHS),<span class="at">height =</span> <span class="dv">10</span> , <span class="at">width =</span> <span class="dv">50</span>) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"summary"</span>,<span class="at">fun =</span> <span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x=</span>CLASS, <span class="at">y=</span>MATHS),<span class="at">height =</span> <span class="dv">10</span> , <span class="at">width =</span> <span class="dv">50</span>) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"summary"</span>,<span class="at">fun =</span> <span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="hands_on_1_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x=</span>CLASS, <span class="at">y=</span>MATHS)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()<span class="sc">+</span><span class="fu">facet_grid</span>(<span class="at">rows=</span><span class="fu">vars</span>(GENDER))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="hands_on_1_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 

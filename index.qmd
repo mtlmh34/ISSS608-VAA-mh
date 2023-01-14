@@ -7,13 +7,11 @@ title: "ISSS608-VAA-Liang Minghao"
 ## code block
 
 ```{r}
-library(gapminder)
 library(ggplot2)
 library(tidyverse)
 
-gap<-gapminder
+d <- read.csv('/Users/minghaooo/Documents/Term 4/ISSS608-Visual Analytics/inclass-1/Exam_data.csv')
 options(repr.plot.width = 5, repr.plot.height =2)
-gap %>%
-  filter(year==2007, continent=='Asia') %>%
-  ggplot(aes(x=country, y=pop),height = 10 , width = 50) + geom_bar(stat='identity')
+d %>%
+  ggplot(aes(x=CLASS, y=MATHS),height = 10 , width = 50) + geom_bar(stat = "summary",fun = "mean")
 ```

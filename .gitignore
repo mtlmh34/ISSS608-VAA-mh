@@ -3,5 +3,5 @@
 .Rdata
 .httr-oauth
 .DS_Store
-
 /.quarto/
+hands-on-exercise1.R

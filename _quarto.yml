@@ -10,7 +10,7 @@ website:
         - href: hands_on_1.qmd
     - text: "In-Class Exercise"
       menu:
-        - text: "In-Class exercise 1: Tableau Visualisation"
+        - text: "In-Class 1: Tableau Visualisation"
           href: https://public.tableau.com/app/profile/minghao.liang/viz/inclass-exercise-1/Dashboard1
     right:
       - href: index.qmd

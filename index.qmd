@@ -2,10 +2,9 @@
 title: "ISSS608-VAA-Liang Minghao"
 ---
 
-**Welcome to my ISSS608 Visual Analytics and Application portfolio webpage!**
+**Welcome to my ISSS608 Visual Analytics and Application portfolio webpage**
 
 ## code block
-
 ```{r}
 library(ggplot2)
 library(tidyverse)

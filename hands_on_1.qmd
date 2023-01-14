@@ -1,11 +1,8 @@
 ---
-title: "ISSS608-VAA-Liang Minghao"
+title: "Hands-on Exercise 1"
 ---
 
-**Welcome to my ISSS608 Visual Analytics and Application portfolio webpage**
-
-## code block
-
+## Bar chart of average maths results by class
 ```{r}
 library(ggplot2)
 library(tidyverse)

@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Liang Minghao">
+<meta name="dcterms.date" content="2023-01-14">
+<meta name="description" content="Visualization of Sales and Profit Summary of a store using Tableau Desktop.">
 
-<title>ISSS608-VAA-mh - Gallery</title>
+<title>ISSS608-VAA-mh - In-Class Exercise 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +33,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -60,37 +61,7 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -152,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./Gallery.html" aria-current="page">
+    <a class="nav-link" href="./Gallery.html">
  <span class="menu-text">Gallery</span></a>
   </li>  
 </ul>
@@ -166,21 +137,54 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">1. Overview</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Gallery</h1>
+<h1 class="title">In-Class Exercise 1</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">in-class exercise</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>Visualization of Sales and Profit Summary of a store using Tableau Desktop.</p>
+  </div>
 </div>
 
-
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    Liang Minghao 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            SMU, MITB
+          </p>
+      </div>
+    </div>
 
 <div class="quarto-title-meta">
 
-    
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 14, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -188,134 +192,15 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="overview" class="level1">
+<h1>1. Overview</h1>
+<p>The outcomes of the exercise are shown as a dashboard on <a href="https://public.tableau.com/app/profile/minghao.liang/viz/inclass-exercise-1/Dashboard1">Tableau Public</a>.</p>
+<p><img src="inclass_1_prev.jpg" class="img-fluid" style="width:60.0%"></p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="hands-on exercise" data-listing-date-sort="1673539200000" data-listing-file-modified-sort="1674110211568" data-listing-reading-time-sort="2.5">
-<div class="thumbnail">
-<a href="./handson_1.html">
-<div class="thumbnail-image">
-
-</div>
-</a><p><a href="./handson_1.html"></a></p>
-</div>
-<div class="body">
-<a href="./handson_1.html">
-<h3 class="no-anchor listing-title">
-Hands-on Exercise 1: ggplot using R
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>Creating 1st data visualisation using ggplot package in R.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./handson_1.html">
-<div class="listing-date">
-Jan 13, 2023
-</div>
-<div class="listing-author">
-Liang Minghao
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1673948970871" data-listing-reading-time-sort="0.285">
-<div class="thumbnail">
-<p><a href="./index.html"> <img src="./IMG_9043.jpg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./index.html">
-<h3 class="no-anchor listing-title">
-Liang Minghao’s Visual Analytics Portfolio
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-This website shows the collection of my visual analytics exercises and projects. Hope you enjoy my works!
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./index.html"> </a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="take-home exercise" data-listing-date-sort="1673539200000" data-listing-file-modified-sort="1674110668576" data-listing-reading-time-sort="0.265">
-<div class="thumbnail">
-<a href="./takehome_1.html">
-<div class="thumbnail-image">
-
-</div>
-</a><p><a href="./takehome_1.html"></a></p>
-</div>
-<div class="body">
-<a href="./takehome_1.html">
-<h3 class="no-anchor listing-title">
-Take-Home Exercise 1
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>Reveal demographic structure of nine selected planning areas on a single view by using trellis display.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./takehome_1.html">
-<div class="listing-date">
-Jan 13, 2023
-</div>
-<div class="listing-author">
-Liang Minghao
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="take-home exercise" data-listing-date-sort="1673625600000" data-listing-file-modified-sort="1674111135314" data-listing-reading-time-sort="0.005">
-<div class="thumbnail">
-<a href="./inclass_1.html">
-<div class="thumbnail-image">
-
-</div>
-</a><p><a href="./inclass_1.html"></a></p>
-</div>
-<div class="body">
-<a href="./inclass_1.html">
-<h3 class="no-anchor listing-title">
-Take-Home Exercise 1
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>Visualization of Sales and Profit Summary of a store using Tableau Desktop.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./inclass_1.html">
-<div class="listing-date">
-Jan 14, 2023
-</div>
-<div class="listing-author">
-Liang Minghao
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

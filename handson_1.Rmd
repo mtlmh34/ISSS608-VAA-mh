@@ -1,13 +1,25 @@
 ---
 title: "Hands-on Exercise 1: ggplot using R"
-author: Minghao
-categories:
-  - hands-on exercise
+categories: hands-on exercise
+description: |
+  Creating 1st data visualisation using ggplot package in R.
+author:
+  - name: Liang Minghao
+    affiliation: SMU, MITB
+    affiliation_url: https://scis.smu.edu.sg/master-it-business
+date: "13 Jan, 2023"
+preview:
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 3
 ---
 
-::: {#hero-heading}
-Hands-on exercise 1!
-:::
+```{r global option, include = FALSE}
+knitr::opts_chunk$set(message = FALSE, fig.retina = 3)
+```
+---
 
 ## Getting Started
 

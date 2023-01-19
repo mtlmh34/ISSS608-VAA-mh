@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Liang Minghao">
+<meta name="dcterms.date" content="2023-01-13">
+<meta name="description" content="Reveal demographic structure of nine selected planning areas on a single view by using trellis display.">
 
-<title>ISSS608-VAA-mh - Gallery</title>
+<title>ISSS608-VAA-mh - Take-Home Exercise 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +33,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -60,37 +61,7 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -152,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./Gallery.html" aria-current="page">
+    <a class="nav-link" href="./Gallery.html">
  <span class="menu-text">Gallery</span></a>
   </li>  
 </ul>
@@ -166,21 +137,62 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">1. Overview</a></li>
+  <li><a href="#choosing-the-9-planning-areas" id="toc-choosing-the-9-planning-areas" class="nav-link" data-scroll-target="#choosing-the-9-planning-areas">2. Choosing The 9 Planning Areas</a></li>
+  <li><a href="#visualization-on-tableau" id="toc-visualization-on-tableau" class="nav-link" data-scroll-target="#visualization-on-tableau">3. Visualization on Tableau</a></li>
+  <li><a href="#insights-and-observations" id="toc-insights-and-observations" class="nav-link" data-scroll-target="#insights-and-observations">4. Insights and Observations</a></li>
+  <li><a href="#step-by-step-procedures" id="toc-step-by-step-procedures" class="nav-link" data-scroll-target="#step-by-step-procedures">5. Step-by-Step Procedures</a>
+  <ul class="collapse">
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">5.1 Data Preparation</a></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">5.2 Data Visualization</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Gallery</h1>
+<h1 class="title">Take-Home Exercise 1</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">take-home exercise</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    <p>Reveal demographic structure of nine selected planning areas on a single view by using trellis display.</p>
+  </div>
 </div>
 
-
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    Liang Minghao 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            SMU, MITB
+          </p>
+      </div>
+    </div>
 
 <div class="quarto-title-meta">
 
-    
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 13, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -188,134 +200,190 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="overview" class="level1">
+<h1>1. Overview</h1>
+<p>In this exercise, the demographic structure of Singapore at planning area level will be revealed using age-sex pyramid method; data of nine selected planning areas will be presented on a single view by using trellis display.</p>
+<p>The data used in this exercise is from <a href="https://www.singstat.gov.sg/-/media/files/find_data/population/statistical_tables/respopagesexfa2022.ashx">SingStat</a>, and read into Tableau Desktop 2022.4 for data visualization.</p>
+<p>The data contains 7 columns:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<caption>Data Dictionary</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">columns</th>
+<th style="text-align: left;">interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">PA</td>
+<td style="text-align: left;">Planning Zone</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SZ</td>
+<td style="text-align: left;">Subzone</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AG</td>
+<td style="text-align: left;">Age Group</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sex</td>
+<td style="text-align: left;">Sex</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FA</td>
+<td style="text-align: left;">Floor Area of Residence</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pop</td>
+<td style="text-align: left;">Population</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Time</td>
+<td style="text-align: left;">Time period</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="choosing-the-9-planning-areas" class="level1">
+<h1>2. Choosing The 9 Planning Areas</h1>
+<p>The following nine planning area are chosen: <strong>Tempines, Seng Kang, Ang Mo Kio, Woodlands, Chua Chu Kang, Jurong West, Toa Payoh, Queenstown, Bukit Timah.</strong></p>
+<p>Justification/Reasons to choose these area: these planning areas are top 2 or 3 in population within their own regions, which means the population size is sufficient for us to visualize the demographic structure, compared to those areas with a smaller population.</p>
+</section>
+<section id="visualization-on-tableau" class="level1">
+<h1>3. Visualization on Tableau</h1>
+<p>The outcome of visualization can be viewed on <a href="https://public.tableau.com/app/profile/minghao.liang/viz/take-home-1_16741369553030/AgePyramid?publish=yes">Minghao’s Tableau Public</a>.</p>
+<center>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="takehome_1_steps/final.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The Final Age Pyramid Trellis Charts of 9 Residential Area</figcaption><p></p>
+</figure>
+</div>
+</center>
+</section>
+<section id="insights-and-observations" class="level1">
+<h1>4. Insights and Observations</h1>
+</section>
+<section id="step-by-step-procedures" class="level1">
+<h1>5. Step-by-Step Procedures</h1>
+<section id="data-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="data-preparation">5.1 Data Preparation</h3>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 22%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">No.</th>
+<th style="text-align: left;">Steps</th>
+<th style="text-align: left;">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Load the required data “residents_by_area.csv”</td>
+<td style="text-align: left;"><img src="takehome_1_steps/1.jpg" class="img-fluid"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Press the “+” button, select “Add clean step”</td>
+<td style="text-align: left;"><img src="takehome_1_steps/2.jpg" class="img-fluid"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Select “Filter - Selected values”</td>
+<td style="text-align: left;"><img src="takehome_1_steps/3.jpg" class="img-fluid"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Select the 9 destinated planning areas</td>
+<td style="text-align: left;"><img src="takehome_1_steps/4.jpg" class="img-fluid"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Remove Column <em>Time</em>, as all rows are from year 2022, hence the column is redundant</td>
+<td style="text-align: left;"><img src="takehome_1_steps/5.jpg" class="img-fluid"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Output the prepared data as .csv file</td>
+<td style="text-align: left;"><img src="takehome_1_steps/6.jpg" class="img-fluid"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="data-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="data-visualization">5.2 Data Visualization</h3>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 22%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">No.</th>
+<th style="text-align: left;">Steps</th>
+<th style="text-align: left;">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Load the required data “residents_by_area.csv”</td>
+<td style="text-align: left;"><img src="takehome_1_steps/7.jpg" class="img-fluid"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Press the “+” button, select “Add clean step”</td>
+<td style="text-align: left;"><img src="takehome_1_steps/8.jpg" class="img-fluid"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Select “Filter - Selected values”</td>
+<td style="text-align: left;"><img src="takehome_1_steps/9.jpg" class="img-fluid"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Select the 9 destinated planning areas</td>
+<td style="text-align: left;"><img src="takehome_1_steps/10.jpg" class="img-fluid"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Remove Column <em>Time</em>, as all rows are from year 2022, hence the column is redundant</td>
+<td style="text-align: left;"><img src="takehome_1_steps/11.jpg" class="img-fluid"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Output the prepared data as .csv file</td>
+<td style="text-align: left;"><img src="takehome_1_steps/12.jpg" class="img-fluid"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">Output the prepared data as .csv file</td>
+<td style="text-align: left;"><img src="takehome_1_steps/13.jpg" class="img-fluid"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">Output the prepared data as .csv file</td>
+<td style="text-align: left;"><img src="takehome_1_steps/14.jpg" class="img-fluid"></td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="hands-on exercise" data-listing-date-sort="1673539200000" data-listing-file-modified-sort="1674110211568" data-listing-reading-time-sort="2.5">
-<div class="thumbnail">
-<a href="./handson_1.html">
-<div class="thumbnail-image">
-
-</div>
-</a><p><a href="./handson_1.html"></a></p>
-</div>
-<div class="body">
-<a href="./handson_1.html">
-<h3 class="no-anchor listing-title">
-Hands-on Exercise 1: ggplot using R
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>Creating 1st data visualisation using ggplot package in R.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./handson_1.html">
-<div class="listing-date">
-Jan 13, 2023
-</div>
-<div class="listing-author">
-Liang Minghao
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1673948970871" data-listing-reading-time-sort="0.285">
-<div class="thumbnail">
-<p><a href="./index.html"> <img src="./IMG_9043.jpg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./index.html">
-<h3 class="no-anchor listing-title">
-Liang Minghao’s Visual Analytics Portfolio
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-This website shows the collection of my visual analytics exercises and projects. Hope you enjoy my works!
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./index.html"> </a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="take-home exercise" data-listing-date-sort="1673539200000" data-listing-file-modified-sort="1674110668576" data-listing-reading-time-sort="0.265">
-<div class="thumbnail">
-<a href="./takehome_1.html">
-<div class="thumbnail-image">
-
-</div>
-</a><p><a href="./takehome_1.html"></a></p>
-</div>
-<div class="body">
-<a href="./takehome_1.html">
-<h3 class="no-anchor listing-title">
-Take-Home Exercise 1
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>Reveal demographic structure of nine selected planning areas on a single view by using trellis display.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./takehome_1.html">
-<div class="listing-date">
-Jan 13, 2023
-</div>
-<div class="listing-author">
-Liang Minghao
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="take-home exercise" data-listing-date-sort="1673625600000" data-listing-file-modified-sort="1674111135314" data-listing-reading-time-sort="0.005">
-<div class="thumbnail">
-<a href="./inclass_1.html">
-<div class="thumbnail-image">
-
-</div>
-</a><p><a href="./inclass_1.html"></a></p>
-</div>
-<div class="body">
-<a href="./inclass_1.html">
-<h3 class="no-anchor listing-title">
-Take-Home Exercise 1
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>Visualization of Sales and Profit Summary of a store using Tableau Desktop.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./inclass_1.html">
-<div class="listing-date">
-Jan 14, 2023
-</div>
-<div class="listing-author">
-Liang Minghao
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

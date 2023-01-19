@@ -1,0 +1,9 @@
+---
+title: "Take-Home Exercise 1"
+author: Minghao
+categories:
+  - take-home exercise
+---
+```{r}
+1+1
+```

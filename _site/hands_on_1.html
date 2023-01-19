@@ -166,11 +166,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercise" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Take-home Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercise">    
+        <li>
+    <a class="dropdown-item" href="./take-home-1.html">
+ <span class="dropdown-text">Take-Home exercise 1</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="./index.html">
  <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Gallery.html">
+ <span class="menu-text">Gallery</span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -208,7 +223,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Hands-on Exercise 1: ggplot using R</h1>
-</div>
+  <div class="quarto-categories">
+    <div class="quarto-category">hands-on exercise</div>
+  </div>
+  </div>
 
 
 
@@ -228,6 +246,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<div id="hero-heading">
+<p>Hands-on exercise 1!</p>
+</div>
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
 <section id="import-libraries-read-sample-data" class="level3">
@@ -357,7 +378,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="the-makeover-design-3" class="level3">
 <h3 class="anchored" data-anchor-id="the-makeover-design-3">The makeover design 3</h3>
-<p>*The background histograms show the distribution of English scores for all pupils</p>
+<ul>
+<li>The background histograms show the distribution of English scores for all pupils</li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># duplicate a new dataset without gender</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>no_gender <span class="ot">&lt;-</span> <span class="fu">subset</span>(d, <span class="at">select=</span><span class="sc">-</span><span class="fu">c</span>(GENDER))</span>
@@ -377,7 +400,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="the-makeover-design-4" class="level3">
 <h3 class="anchored" data-anchor-id="the-makeover-design-4">The makeover design 4</h3>
-<p>*A within group scatterplot with reference lines</p>
+<ul>
+<li>A within group scatterplot with reference lines</li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>d,</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> MATHS,<span class="at">y=</span>ENGLISH)) <span class="sc">+</span></span>

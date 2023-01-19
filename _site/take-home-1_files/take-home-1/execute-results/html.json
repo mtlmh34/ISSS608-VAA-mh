@@ -1,0 +1,14 @@
+{
+  "hash": "297652048b5c8a457b3c87123ff3c8de",
+  "result": {
+    "markdown": "---\ntitle: \"take-home-1\"\ndescription: |\n  In this post we present a classic finance use case using the PerformanceAnalytics, quantmod, and dygraphs packages. We'll demonstrate importing stock data, building a portfolio, and then calculating the Sharpe Ratio. \ndate: 11-08-2016\ncategories:\n  - portfolio theory\n  - dygraphs\noutput: \n  distill::distill_article:\n    highlight: default\n    self_contained: false\n    toc: true\nrepository_url: https://github.com/jjallaire/reproducible-finance-with-r/\n---",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

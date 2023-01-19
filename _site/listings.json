@@ -1,0 +1,17 @@
+[
+  {
+    "listing": "/take_home_index.html",
+    "items": [
+      "/hands_on_1.html",
+      "/index.html"
+    ]
+  },
+  {
+    "listing": "/Gallery.html",
+    "items": [
+      "/hands_on_1.html",
+      "/index.html",
+      "/take-home-1.html"
+    ]
+  }
+]

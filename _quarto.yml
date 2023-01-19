@@ -1,6 +1,5 @@
 project:
   type: website
-
 website:
   title: "ISSS608-VAA-mh"
   navbar:
@@ -12,15 +11,24 @@ website:
       menu:
         - text: "In-Class 1: Tableau Visualisation"
           href: https://public.tableau.com/app/profile/minghao.liang/viz/inclass-exercise-1/Dashboard1
+    - text: "Take-home Exercise"
+      menu:
+        - text: "Take-Home exercise 1"
+          href: take-home-1.Rmd
     right:
       - href: index.qmd
         text: Home
-
+      - text: Gallery
+        href: Gallery.qmd
+collections:
+  posts:
+    categories: true
+    categories_metadata: true
+    authors_metadata: true
 format:
   html:
     theme: solar
     css: styles.css
     toc: true
-
 editor: visual
 

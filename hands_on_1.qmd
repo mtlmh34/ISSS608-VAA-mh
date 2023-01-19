@@ -1,27 +1,38 @@
 ---
 title: "Hands-on Exercise 1: ggplot using R"
 author: Minghao
+categories:
+  - hands-on exercise
 ---
+
+::: {#hero-heading}
+Hands-on exercise 1!
+:::
+
 ## Getting Started
 
 ### Import libraries & read sample data
+
 ```{r}
 library(ggplot2)
 library(tidyverse)
 ```
 
 ### Load Data
+
 ```{r}
 d <- read.csv('/Users/minghaooo/Documents/Term 4/ISSS608-Visual Analytics/inclass-1/Exam_data.csv')
 ```
 
 ### Plot the average maths results of each class
+
 ```{r}
 options(repr.plot.width = 5, repr.plot.height =2)
 ggplot(d, aes(x=CLASS, y=MATHS),height = 10 , width = 50) + geom_bar(stat = "summary",fun = "mean")
 ```
 
 ### Working with facet
+
 ```{r}
 # Facet by rows
 ggplot(d, aes(x=CLASS, y=MATHS)) + geom_boxplot()+facet_grid(rows=vars(GENDER))
@@ -34,6 +45,7 @@ ggplot(d, aes(x=GENDER, y=MATHS)) + geom_boxplot()+facet_grid(rows=vars(GENDER),
 ```
 
 ### Working with theme
+
 ```{r}
 ggplot(data=d, 
        aes(x=RACE)) +
@@ -45,8 +57,11 @@ ggplot(data=d,
         panel.grid.minor = element_line(size = 0.25, linetype = 'solid',colour = "white")
         )
 ```
+
 ### The makeover design 1
-* Arrange bar charts in descending order
+
+-   Arrange bar charts in descending order
+
 ```{r}
 
 d %>%
@@ -63,8 +78,10 @@ d %>%
 ```
 
 ### The makeover design 2
-* Adding mean and median lines on the histogram plot
-* Change fill color and line color
+
+-   Adding mean and median lines on the histogram plot
+-   Change fill color and line color
+
 ```{r}
 ggplot(data = d,
        aes(x=MATHS))+
@@ -82,7 +99,9 @@ ggplot(data = d,
 ```
 
 ### The makeover design 3
-*The background histograms show the distribution of English scores for all pupils
+
+-   The background histograms show the distribution of English scores for all pupils
+
 ```{r}
 # duplicate a new dataset without gender
 no_gender <- subset(d, select=-c(GENDER))
@@ -98,7 +117,9 @@ ggplot(d, aes(x=ENGLISH,fill=GENDER))+
 ```
 
 ### The makeover design 4
-*A within group scatterplot with reference lines
+
+-   A within group scatterplot with reference lines
+
 ```{r}
 ggplot(data=d,
        aes(x = MATHS,y=ENGLISH)) +
@@ -108,5 +129,3 @@ ggplot(data=d,
   geom_vline(xintercept = 50, alpha=.5, linetype = "longdash") +
   geom_hline(yintercept = 50, alpha=.5, linetype = "longdash")
 ```
-
-

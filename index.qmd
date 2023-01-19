@@ -12,8 +12,8 @@ about:
       text: Github
       href: https://github.com/mtlmh34
 ---
-:::{#hero-heading}
 
+:::{#hero-heading}
 This website shows the collection of my visual analytics exercises and projects.
 Hope you enjoy my works!
 
@@ -30,7 +30,6 @@ Oct 2018 - Sep 2021
 ## Experience
 
 United Parcel Service | Data Scientist Intern | May 2022 - Nov 2022
-
 :::
 
 

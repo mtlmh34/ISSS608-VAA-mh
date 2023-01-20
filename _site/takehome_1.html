@@ -252,7 +252,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="choosing-the-9-planning-areas" class="level1">
 <h1>2. Choosing The 9 Planning Areas</h1>
 <p>The following nine planning area are chosen: <strong>Tempines, Seng Kang, Ang Mo Kio, Woodlands, Chua Chu Kang, Jurong West, Toa Payoh, Queenstown, Bukit Timah.</strong></p>
-<p>Justification/Reasons to choose these area: these planning areas are top 2 or 3 in population within their own regions, which means the population size is sufficient for us to visualize the demographic structure, compared to those areas with a smaller population.</p>
+<p>Justification/Reasons to choose these areas: these planning areas are top 2 or 3 in population within their own regions, which means the population size is sufficient for us to visualize the demographic structure, compared to those areas with a smaller population.</p>
 </section>
 <section id="visualization-on-tableau" class="level1">
 <h1>3. Visualization on Tableau</h1>
@@ -268,6 +268,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="insights-and-observations" class="level1">
 <h1>4. Insights and Observations</h1>
+<ol type="1">
+<li><p>As a general trend, the visualization indicates that age pyramids of 9 planning areas in Singapore tend to be constrictive, meaning that the bottom part (i.e., children and youths) is narrow and has a smaller population, whereas the middle-top (i.e., mid-age/elderly) part is huge in population. This shows Singapore has entered into an aging society.</p></li>
+<li><p>Sengkang, as one of the more newly established estate areas, have the youngest demographic structure among all selected areas, as it is shown that the age pyramid peaks at 35-39 (for female) and 40-44 (for male); the bottom part of age pyramid of Sengkang is also the widest among all, representing a more significant number of young people in the area.</p></li>
+<li><p>For earlier established areas such as Ang Mo Kio, Choa Chu Kang, Tampines and Woodlands, the age pyramids tilt towards the top to a large extent, indicating a more aging community within the areas.</p></li>
+<li><p>Government should pay more attention to these areas and implement more elderly-oriented facilities, such that the needs of aged people can be taken care of.</p></li>
+</ol>
 </section>
 <section id="step-by-step-procedures" class="level1">
 <h1>5. Step-by-Step Procedures</h1>
@@ -338,42 +344,47 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">Load the required data “residents_by_area.csv”</td>
+<td style="text-align: left;">Create new calculation field “Col” using the following formula (To assign column index)</td>
 <td style="text-align: left;"><img src="takehome_1_steps/7.jpg" class="img-fluid"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2</td>
-<td style="text-align: left;">Press the “+” button, select “Add clean step”</td>
+<td style="text-align: left;">Create new calculation field “Rows” using the following formula (To assign row index)</td>
 <td style="text-align: left;"><img src="takehome_1_steps/8.jpg" class="img-fluid"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3</td>
-<td style="text-align: left;">Select “Filter - Selected values”</td>
+<td style="text-align: left;">Create new variable “Males Pop” so that only male population is displayed</td>
 <td style="text-align: left;"><img src="takehome_1_steps/9.jpg" class="img-fluid"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">4</td>
-<td style="text-align: left;">Select the 9 destinated planning areas</td>
+<td style="text-align: left;">Create new variable “Females Pop” so that only female population is displayed</td>
 <td style="text-align: left;"><img src="takehome_1_steps/10.jpg" class="img-fluid"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">5</td>
-<td style="text-align: left;">Remove Column <em>Time</em>, as all rows are from year 2022, hence the column is redundant</td>
+<td style="text-align: left;">Drag “Females Pop” and “Males Pop” onto Column Page, and drag “AG” to Rows Page. Right click horizontal axis, select “edit axis” and check “Reversed” field.</td>
 <td style="text-align: left;"><img src="takehome_1_steps/11.jpg" class="img-fluid"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">6</td>
-<td style="text-align: left;">Output the prepared data as .csv file</td>
-<td style="text-align: left;"><img src="takehome_1_steps/12.jpg" class="img-fluid"></td>
+<td style="text-align: left;">Drag “Col” onto Column Page and drag “Rows” to Rows Page; Drag “PA” to Detail Mark</td>
+<td style="text-align: left;"><img src="takehome_1_steps/12-0.jpg" class="img-fluid"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">7</td>
-<td style="text-align: left;">Output the prepared data as .csv file</td>
-<td style="text-align: left;"><img src="takehome_1_steps/13.jpg" class="img-fluid"></td>
+<td style="text-align: left;">For “Col” and “Rows” fields, select Compute Using - PA</td>
+<td style="text-align: left;"><img src="takehome_1_steps/12.jpg" class="img-fluid"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">8</td>
-<td style="text-align: left;">Output the prepared data as .csv file</td>
+<td style="text-align: left;">Under Marks - All, select min/max Label for SUM(Females Pop) and SUM(Males Pop); uncheck “Label minimum value” to display the maximum values only</td>
+<td style="text-align: left;"><img src="takehome_1_steps/13.jpg" class="img-fluid"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">Rename the worksheet and save.</td>
 <td style="text-align: left;"><img src="takehome_1_steps/14.jpg" class="img-fluid"></td>
 </tr>
 </tbody>

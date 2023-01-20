@@ -36,7 +36,7 @@ kable(df, caption = "Data Dictionary")
 
 The following nine planning area are chosen: **Tempines, Seng Kang, Ang Mo Kio, Woodlands, Chua Chu Kang, Jurong West, Toa Payoh, Queenstown, Bukit Timah.**
 
-Justification/Reasons to choose these area: these planning areas are top 2 or 3 in population within their own regions, which means the population size is sufficient for us to visualize the demographic structure, compared to those areas with a smaller population.
+Justification/Reasons to choose these areas: these planning areas are top 2 or 3 in population within their own regions, which means the population size is sufficient for us to visualize the demographic structure, compared to those areas with a smaller population.
 
 # 3. Visualization on Tableau
 
@@ -47,6 +47,13 @@ The outcome of visualization can be viewed on [Minghao's Tableau Public](https:/
 </center>
 
 # 4. Insights and Observations
+(1) As a general trend, the visualization indicates that age pyramids of 9 planning areas in Singapore tend to be constrictive, meaning that the bottom part (i.e., children and youths) is narrow and has a smaller population, whereas the middle-top (i.e., mid-age/elderly) part is huge in population. This shows Singapore has entered into an aging society.
+
+(2) Sengkang, as one of the more newly established estate areas, have the youngest demographic structure among all selected areas, as it is shown that the age pyramid peaks at 35-39 (for female) and 40-44 (for male); the bottom part of age pyramid of Sengkang is also the widest among all, representing a more significant number of young people in the area.
+
+(3) For earlier established areas such as Ang Mo Kio, Choa Chu Kang, Tampines and Woodlands, the age pyramids tilt towards the top to a large extent, indicating a more aging community within the areas.
+
+(4) Government should pay more attention to these areas and implement more elderly-oriented facilities, such that the needs of aged people can be taken care of.
 
 # 5. Step-by-Step Procedures
 
@@ -65,11 +72,12 @@ The outcome of visualization can be viewed on [Minghao's Tableau Public](https:/
 
 | No. | Steps                                                                               | Action                      |
 |:--------------|:---------------|:----------------------------------------|
-| 1   | Load the required data "residents_by_area.csv"                                      | ![](takehome_1_steps/7.jpg) |
-| 2   | Press the "+" button, select "Add clean step"                                       | ![](takehome_1_steps/8.jpg) |
-| 3   | Select "Filter - Selected values"                                                   | ![](takehome_1_steps/9.jpg) |
-| 4   | Select the 9 destinated planning areas                                              | ![](takehome_1_steps/10.jpg) |
-| 5   | Remove Column *Time*, as all rows are from year 2022, hence the column is redundant | ![](takehome_1_steps/11.jpg) |
-| 6   | Output the prepared data as .csv file                                               | ![](takehome_1_steps/12.jpg) |
-| 7   | Output the prepared data as .csv file                                               | ![](takehome_1_steps/13.jpg) |
-| 8   | Output the prepared data as .csv file                                               | ![](takehome_1_steps/14.jpg) |
+| 1   | Create new calculation field "Col" using the following formula (To assign column index)     | ![](takehome_1_steps/7.jpg) |
+| 2   | Create new calculation field "Rows" using the following formula (To assign row index)       | ![](takehome_1_steps/8.jpg) |
+| 3   | Create new variable "Males Pop" so that only male population is displayed      | ![](takehome_1_steps/9.jpg) |
+| 4   | Create new variable "Females Pop" so that only female population is displayed  | ![](takehome_1_steps/10.jpg) |
+| 5   | Drag "Females Pop" and "Males Pop" onto Column Page, and drag "AG" to Rows Page. Right click horizontal axis, select "edit axis" and check "Reversed" field.  | ![](takehome_1_steps/11.jpg) |
+| 6   | Drag "Col" onto Column Page and drag "Rows" to Rows Page; Drag "PA" to Detail Mark  | ![](takehome_1_steps/12-0.jpg) |
+| 7   | For "Col" and "Rows" fields, select Compute Using - PA         | ![](takehome_1_steps/12.jpg) |
+| 8   | Under Marks - All, select min/max Label for SUM(Females Pop) and SUM(Males Pop); uncheck "Label minimum value " to display the maximum values only  | ![](takehome_1_steps/13.jpg) |
+| 9   | Rename the worksheet and save.                                             | ![](takehome_1_steps/14.jpg) |

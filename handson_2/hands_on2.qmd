@@ -1,4 +1,12 @@
 ---
 title: "Hands-on Exercise 2"
 author: "Minghao"
+date: "`r Sys.Date()`"
 ---
+
+```{}
+{r}
+
+
+
+```

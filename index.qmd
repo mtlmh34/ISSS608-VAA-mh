@@ -18,9 +18,13 @@ This website shows the collection of my visual analytics exercises and projects.
 
 ## Education
 
-Singapore Management University \| Master of IT in Business (Analytics) \| Jan 2022 - Apr 2023
+Singapore Management University \| Master of IT in Business (Analytics)
 
-University of Wollongong \| Bachelor in Computer Science \| Oct 2018 - Sep 2021
+Jan 2022 - Apr 2023
+
+University of Wollongong \| Bachelor in Computer Science
+
+Oct 2018 - Sep 2021
 
 ## Experience
 

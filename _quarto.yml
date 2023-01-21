@@ -6,15 +6,18 @@ website:
     left:
     - text: "Hands-on Exercise"
       menu: 
-        - href: handson_1.Rmd
+        - text: 'Hands-on Exercise 1'
+          href: 'handson_1/handson_1.Rmd'
+        - text: 'Hands-on Exercise 2'
+          href: 'handson_2/hands_on2.qmd'
     - text: "In-Class Exercise"
       menu:
         - text: "In-Class 1: Tableau Visualisation"
-          href: inclass_1.Rmd
+          href: 'inclass_1/inclass_1.Rmd'
     - text: "Take-home Exercise"
       menu:
-        - text: "Take-Home exercise 1"
-          href: takehome_1.Rmd
+        - text: "Take-Home Exercise 1"
+          href: 'takehome_1/takehome_1.Rmd'
     right:
       - href: index.qmd
         text: Home

@@ -19,7 +19,8 @@ output:
 ```{r global option, include = FALSE}
 knitr::opts_chunk$set(message = FALSE, fig.retina = 3)
 ```
----
+
+------------------------------------------------------------------------
 
 ## Getting Started
 

@@ -25,7 +25,7 @@
     "href": "Gallery.html",
     "title": "Gallery",
     "section": "",
-    "text": "Hands-on Exercise 1: ggplot using R\n\n\n\n\n\nCreating 1st data visualisation using ggplot package in R.\n\n\n\n\n\n\nJan 13, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHands-on Exercise 2\n\n\n\n\n\n\n\n\n\n\n\n\nMinghao\n\n\n\n\n\n\n  \n\n\n\n\nIn-Class Exercise 1\n\n\n\n\n\nVisualization of Sales and Profit Summary of a store using Tableau Desktop.\n\n\n\n\n\n\nJan 14, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\n  \n\n\n\n\nLiang Minghao’s Visual Analytics Portfolio\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nTake-Home Exercise 1\n\n\n\n\n\nReveal demographic structure of nine selected planning areas on a single view by using trellis display.\n\n\n\n\n\n\nJan 13, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\nNo matching items"
+    "text": "Hands-on Exercise 1: ggplot using R\n\n\n\n\n\nCreating 1st data visualisation using ggplot package in R.\n\n\n\n\n\n\nJan 13, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHands-on Exercise 2\n\n\n\n\n\nCreating 1st data visualisation using ggplot package in R.\n\n\n\n\n\n\nInvalid Date\n\n\nLiang Minghao\n\n\n\n\n\n\n  \n\n\n\n\nIn-Class Exercise 1\n\n\n\n\n\nVisualization of Sales and Profit Summary of a store using Tableau Desktop.\n\n\n\n\n\n\nJan 14, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\n  \n\n\n\n\nLiang Minghao’s Visual Analytics Portfolio\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nTake-Home Exercise 1\n\n\n\n\n\nReveal demographic structure of nine selected planning areas on a single view by using trellis display.\n\n\n\n\n\n\nJan 13, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "takehome_1/takehome_1.html",
@@ -39,6 +39,6 @@
     "href": "handson_2/hands_on2.html",
     "title": "Hands-on Exercise 2",
     "section": "",
-    "text": "{r}"
+    "text": "1+1\n\n[1] 2"
   }
 ]

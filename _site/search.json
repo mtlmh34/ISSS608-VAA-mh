@@ -46,7 +46,7 @@
     "href": "inclass_3/inclass_3.html#visualization",
     "title": "In-Class Exercise 3",
     "section": "Visualization",
-    "text": "Visualization\n\nDotplot using ggplot2\n\nggplot(exam_data,\n       aes(x=MATHS)) +\n  geom_dotplot(dotsize = .5)\n\n\n\n\n\n\nInteractive dotplot using girafe\nNotice student id is shown when it is being hovered on.\n\np <- ggplot(data=exam_data, \n       aes(x = MATHS)) +\n  geom_dotplot_interactive(\n    aes(tooltip = ID),\n    stackgroups = TRUE, \n    binwidth = 1, \n    method = \"histodot\") +\n  scale_y_continuous(NULL, breaks = NULL)\ngirafe(\n  ggobj = p,\n  width_svg = 6,\n  height_svg = 6*0.618\n)"
+    "text": "Visualization\n\nDotplot using ggplot2\n\nggplot(exam_data,\n       aes(x=MATHS)) +\n  geom_dotplot(dotsize = .5)\n\n\n\n\n\n\nInteractive dotplot using girafe\nNotice student id is shown when it is being hovered on.\n\nexam_data$tooltip <- c(paste0(\n  \"Name = \", exam_data$ID,\n  \"\\t Class = \", exam_data$CLASS,\n  \"\\t Grade = \", exam_data$MATHS))\n\np <- ggplot(data=exam_data, \n       aes(x = MATHS)) +\n  geom_dotplot_interactive(\n    aes(tooltip = exam_data$tooltip),\n    stackgroups = TRUE, \n    binwidth = 1, \n    method = \"histodot\") +\n  scale_y_continuous(NULL, breaks = NULL)\ngirafe(\n  ggobj = p,\n  width_svg = 6,\n  height_svg = 6*0.618\n)"
   },
   {
     "objectID": "inclass_2/inclass_2.html",

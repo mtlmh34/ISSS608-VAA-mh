@@ -45,10 +45,15 @@ ggplot(exam_data,
 ### Interactive dotplot using girafe
 Notice student id is shown when it is being hovered on.
 ```{r}
+exam_data$tooltip <- c(paste0(
+  "Name = ", exam_data$ID,
+  "\t Class = ", exam_data$CLASS,
+  "\t Grade = ", exam_data$MATHS))
+
 p <- ggplot(data=exam_data, 
        aes(x = MATHS)) +
   geom_dotplot_interactive(
-    aes(tooltip = ID),
+    aes(tooltip = exam_data$tooltip),
     stackgroups = TRUE, 
     binwidth = 1, 
     method = "histodot") +

@@ -49,5 +49,17 @@
   },
   "handson_1/handson_1.Rmd": {
     "handson_1.html": "3e388125"
+  },
+  "handson_3/hands_on3.qmd": {
+    "hands_on3.html": "9cd248a5"
+  },
+  "takehome_2/takehome_2.Rmd": {
+    "takehome_2.html": "bb666fa2"
+  },
+  "inclass_2/inclass_2.qmd": {
+    "inclass_2.html": "a0aa5ad4"
+  },
+  "inclass_3/inclass_3.Rmd": {
+    "inclass_3.html": "f200e6ba"
   }
 }

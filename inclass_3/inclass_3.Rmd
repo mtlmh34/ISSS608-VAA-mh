@@ -1,0 +1,23 @@
+---
+title: "In-Class Exercise 3"
+categories: in-class exercise
+description: |
+  Exploring interactivity in visual analytics using R.
+author:
+  - name: Liang Minghao
+    affiliation: SMU, MITB
+    affiliation_url: https://scis.smu.edu.sg/master-it-business
+date: "Jan 28 2023"
+date modified: "`r Sys.Date()`"
+preview: 
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 3
+---
+
+```{r}
+
+
+```

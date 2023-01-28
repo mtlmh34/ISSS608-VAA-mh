@@ -1,0 +1,27 @@
+---
+title: "In-Class Exercise 2"
+categories: in-class exercise
+description: |
+  Exploring interactivity in visual analytics using Tableau Desktop.
+author:
+  - name: Liang Minghao
+    affiliation: SMU, MITB
+    affiliation_url: https://scis.smu.edu.sg/master-it-business
+date: "`r Sys.Date()`"
+preview: inclass-2.png
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 3
+---
+
+# 1. Exploring interactivity features
+
+The outcomes of the exercise are shown as a dashboard on [Tableau Public](https://public.tableau.com/app/profile/minghao.liang/viz/inclass-exercise-3/Dashboard1).
+
+![](inclass-2.png){width="80%"}
+
+#2. Scatterplot with marginal plot
+
+[Link](https://public.tableau.com/app/profile/minghao.liang/viz/inclass-3-scatterplot-with-marginal-boxplot/Scatterplotwithmarginalboxplot) .

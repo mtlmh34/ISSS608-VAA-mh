@@ -1,0 +1,18 @@
+---
+title: "Take-Home Exercise 2"
+categories: take-home exercise
+description: |
+  Take-home exercise 2 is a review of take-home exersise 1 of our peers; critics and adjustment is done using R graphical packages, based on some of the areas of improvement in the work.
+author:
+  - name: Liang Minghao
+    affiliation: SMU, MITB
+    affiliation_url: https://scis.smu.edu.sg/master-it-business
+date: "`r Sys.Date()`"
+preview:
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 3
+---
+

@@ -60,6 +60,27 @@
     "href": "inclass_3/inclass_3.html",
     "title": "In-Class Exercise 3",
     "section": "",
-    "text": "pacman::p_load()"
+    "text": "Two packages will be installed and loaded: tidyverse and ggiraph.\n\npacman::p_load(ggiraph,tidyverse)"
+  },
+  {
+    "objectID": "inclass_3/inclass_3.html#importing-data",
+    "href": "inclass_3/inclass_3.html#importing-data",
+    "title": "In-Class Exercise 3",
+    "section": "Importing data",
+    "text": "Importing data\n\nexam_data <- read_csv('../Data/Exam_data.csv')"
+  },
+  {
+    "objectID": "inclass_3/inclass_3.html#installing-and-loading-r-packages",
+    "href": "inclass_3/inclass_3.html#installing-and-loading-r-packages",
+    "title": "In-Class Exercise 3",
+    "section": "Installing and loading R packages",
+    "text": "Installing and loading R packages\nTwo packages will be installed and loaded: tidyverse and ggiraph.\n\npacman::p_load(ggiraph,tidyverse)"
+  },
+  {
+    "objectID": "inclass_3/inclass_3.html#visualization",
+    "href": "inclass_3/inclass_3.html#visualization",
+    "title": "In-Class Exercise 3",
+    "section": "Visualization",
+    "text": "Visualization\n\nDotplot using ggplot2\n\nggplot(exam_data,\n       aes(x=MATHS)) +\n  geom_dotplot(dotsize = .5)\n\n\n\n\n\n\nInteractive dotplot using girafe\nNotice student id is shown when it is being hovered on.\n\np <- ggplot(data=exam_data, \n       aes(x = MATHS)) +\n  geom_dotplot_interactive(\n    aes(tooltip = ID),\n    stackgroups = TRUE, \n    binwidth = 1, \n    method = \"histodot\") +\n  scale_y_continuous(NULL, breaks = NULL)\ngirafe(\n  ggobj = p,\n  width_svg = 6,\n  height_svg = 6*0.618\n)"
   }
 ]

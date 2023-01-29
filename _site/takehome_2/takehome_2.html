@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Liang Minghao">
-<meta name="dcterms.date" content="2023-01-28">
+<meta name="dcterms.date" content="2023-01-29">
 <meta name="description" content="Take-home exercise 2 is a review of take-home exersise 1 of our peers; critics and adjustment is done using R graphical packages, based on some of the areas of improvement in the work.">
 
 <title>ISSS608-VAA-mh - Take-Home Exercise 2</title>
@@ -23,6 +23,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -157,7 +220,33 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">1. Overview</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">2. Getting Started</a>
+  <ul class="collapse">
+  <li><a href="#import-necessary-packages" id="toc-import-necessary-packages" class="nav-link" data-scroll-target="#import-necessary-packages">2.1. Import necessary packages</a></li>
+  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data">2.2. Import data</a></li>
+  </ul></li>
+  <li><a href="#critics-and-makeover-of-visualization-using-r" id="toc-critics-and-makeover-of-visualization-using-r" class="nav-link" data-scroll-target="#critics-and-makeover-of-visualization-using-r">3. Critics and Makeover of Visualization using R</a>
+  <ul class="collapse">
+  <li><a href="#the-original-visualization" id="toc-the-original-visualization" class="nav-link" data-scroll-target="#the-original-visualization">3.1. The original visualization</a></li>
+  <li><a href="#critic-clarity" id="toc-critic-clarity" class="nav-link" data-scroll-target="#critic-clarity">3.2. Critic: Clarity</a></li>
+  <li><a href="#critic-aesthetic" id="toc-critic-aesthetic" class="nav-link" data-scroll-target="#critic-aesthetic">3.3. Critic: Aesthetic</a></li>
+  <li><a href="#sketch-of-propose-design" id="toc-sketch-of-propose-design" class="nav-link" data-scroll-target="#sketch-of-propose-design">3.4. Sketch of Propose Design</a></li>
+  <li><a href="#visualization-makeover-using-r" id="toc-visualization-makeover-using-r" class="nav-link" data-scroll-target="#visualization-makeover-using-r">3.5. Visualization Makeover using R</a>
+  <ul class="collapse">
+  <li><a href="#producing-the-background" id="toc-producing-the-background" class="nav-link" data-scroll-target="#producing-the-background">Producing the background</a></li>
+  <li><a href="#produce-per-area-plot" id="toc-produce-per-area-plot" class="nav-link" data-scroll-target="#produce-per-area-plot">Produce per area plot</a></li>
+  <li><a href="#combine-plots-of-9-areas" id="toc-combine-plots-of-9-areas" class="nav-link" data-scroll-target="#combine-plots-of-9-areas">Combine Plots of 9 Areas</a></li>
+  <li><a href="#advantages-of-makeover-design" id="toc-advantages-of-makeover-design" class="nav-link" data-scroll-target="#advantages-of-makeover-design">Advantages of Makeover design</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways">4. Takeaways</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -196,7 +285,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 28, 2023</p>
+      <p class="date">January 29, 2023</p>
     </div>
   </div>
   
@@ -206,8 +295,230 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="overview" class="level1">
+<h1>1. Overview</h1>
+<p>This take-home exercise is done based on a take-home exercise 1 submission prepared by a classmate. The peer submission will be critiqued in terms of <strong>clarity</strong> and <strong>aesthetics</strong>, and the original design will be remade using the data visualization principles and best practice learnt in Lesson 1 and 2.</p>
+<p>The dataset used in take-home exercise 1 and 2 is downloaded from <a href="https://www.singstat.gov.sg/find-data/search-by-theme/population/geographic-distribution/latest-data">SingStat</a>, and processed by RStudio <code>tidyverse</code> family of packages and visualized by <code>ggplot2</code> and its extensions.</p>
+</section>
+<section id="getting-started" class="level1">
+<h1>2. Getting Started</h1>
+<section id="import-necessary-packages" class="level2">
+<h2 class="anchored" data-anchor-id="import-necessary-packages">2.1. Import necessary packages</h2>
+<p>Before we get started, it is important for us to ensure that the required R packages have been installed.</p>
+<p>R package <code>pacman</code> is used to load all required packages, and install them automatically if the packages are not installed. The code chunk below is used to install and load the required packages onto RStudio.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(dplyr,tidyverse,ggplot2,patchwork)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="import-data" class="level2">
+<h2 class="anchored" data-anchor-id="import-data">2.2. Import data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read csv file</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>residents <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'../Data/residents_by_area.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 75696 Columns: 7
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (5): PA, SZ, AG, Sex, FA
+dbl (2): Pop, Time
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="critics-and-makeover-of-visualization-using-r" class="level1">
+<h1>3. Critics and Makeover of Visualization using R</h1>
+<section id="the-original-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="the-original-visualization">3.1. The original visualization</h2>
+<p>The original visualization prepared by our classmate shows a trellis plot containing age-sex pyramids of 9 different areas in SG using Tableau Desktop; in each grid, the right-hand side displays male population and the left-hand side displays female population, binned by age groups.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="peers_work.jpg" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">The original dashboard by one of the classmates</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="critic-clarity" class="level2">
+<h2 class="anchored" data-anchor-id="critic-clarity">3.2. Critic: Clarity</h2>
+<ul>
+<li><p>Contrast colours are used for male and female population, which gives clear disinction.</p></li>
+<li><p><strong>Absolute</strong> value of population is used in the visualization; as different areas have different population sizes, it is difficult to compare the age structure against each other.</p></li>
+<li><p>Value of <strong>every bar</strong> is shown in the graph, which can be distracting for the audience.</p></li>
+<li><p>To give a clearer comparison to the overall population, each of the grid in the trellis can be overlay-ed on the age-sex pyramid of <strong>SG’s total population</strong>.</p></li>
+</ul>
+</section>
+<section id="critic-aesthetic" class="level2">
+<h2 class="anchored" data-anchor-id="critic-aesthetic">3.3. Critic: Aesthetic</h2>
+<ul>
+<li><p>The axes and titles are nicely labelled.</p></li>
+<li><p>Instruction is stated above the checkboxs clearly, allowing users to change areas to be displayed.</p></li>
+</ul>
+</section>
+<section id="sketch-of-propose-design" class="level2">
+<h2 class="anchored" data-anchor-id="sketch-of-propose-design">3.4. Sketch of Propose Design</h2>
+<p>The proposed design is meant to keep the advantages of the original design, and mainly improve on clarity, so that more informative visualization can be produced.</p>
+<p>Below is the sketch of the makeover design.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="sketch_1.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Sketch of makeover</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="visualization-makeover-using-r" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-makeover-using-r">3.5. Visualization Makeover using R</h2>
+<section id="producing-the-background" class="level3">
+<h3 class="anchored" data-anchor-id="producing-the-background">Producing the background</h3>
+<p>Firstly, compute sum of population by sex and age groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>SG_pop <span class="ot">&lt;-</span> <span class="fu">sum</span>(residents<span class="sc">$</span>Pop)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>res_total <span class="ot">&lt;-</span> residents <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sex,AG) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_pop=</span><span class="fu">sum</span>(Pop))<span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#PopPerc, if female -&gt; positive, if male -&gt; negative</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PopPerc=</span><span class="fu">case_when</span>(Sex<span class="sc">==</span><span class="st">'Females'</span><span class="sc">~</span><span class="fu">round</span>(total_pop <span class="sc">/</span> SG_pop, <span class="dv">4</span>), </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                                       <span class="cn">TRUE</span><span class="sc">~-</span><span class="fu">round</span>(total_pop <span class="sc">/</span> SG_pop, <span class="dv">4</span>)), </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">signal=</span><span class="fu">case_when</span>(Sex<span class="sc">==</span><span class="st">'Females'</span><span class="sc">~</span><span class="dv">1</span>,<span class="cn">TRUE</span><span class="sc">~-</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Sex'. You can override using the `.groups`
+argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#set age group level</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>res_total<span class="sc">$</span>AG <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(res_total<span class="sc">$</span>AG,<span class="st">'_'</span>,<span class="st">' '</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>res_total<span class="sc">$</span>AG <span class="ot">&lt;-</span> <span class="fu">factor</span>(res_total<span class="sc">$</span>AG, <span class="at">levels =</span> <span class="fu">unique</span>(<span class="fu">str_replace_all</span>(residents<span class="sc">$</span>AG,<span class="st">'_'</span>,<span class="st">' '</span>)), <span class="at">ordered=</span><span class="cn">TRUE</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#levels(res_total$AG)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#head(res_total)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Plotting of overall population. The object <code>total_pop_plot</code> will be used for background of plots of each of the areas. Notice that x-axis shows the percentage of population by age group and sex over total SG population.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>total_pop_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(res_total) <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>AG,<span class="at">y=</span>PopPerc), <span class="at">stat =</span> <span class="st">'identity'</span>, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"grey"</span>,<span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>total_pop_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="takehome_2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="produce-per-area-plot" class="level3">
+<h3 class="anchored" data-anchor-id="produce-per-area-plot">Produce per area plot</h3>
+<p>Next, aggregate population by Planning Areas, Sex and Age Group.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>res_by_area <span class="ot">&lt;-</span> residents <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PA, Sex, AG) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_pop=</span><span class="fu">sum</span>(Pop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'PA', 'Sex'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#set age group level</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>res_by_area<span class="sc">$</span>AG <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(res_by_area<span class="sc">$</span>AG,<span class="st">'_'</span>,<span class="st">' '</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># order age group properly</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>res_by_area<span class="sc">$</span>AG <span class="ot">&lt;-</span> <span class="fu">factor</span>(res_by_area<span class="sc">$</span>AG, <span class="at">levels =</span> <span class="fu">unique</span>(<span class="fu">str_replace_all</span>(residents<span class="sc">$</span>AG,<span class="st">'_'</span>,<span class="st">' '</span>)), <span class="at">ordered=</span><span class="cn">TRUE</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># levels after assigning order</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(res_by_area<span class="sc">$</span>AG)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "0 to 4"      "5 to 9"      "10 to 14"    "15 to 19"    "20 to 24"   
+ [6] "25 to 29"    "30 to 34"    "35 to 39"    "40 to 44"    "45 to 49"   
+[11] "50 to 54"    "55 to 59"    "60 to 64"    "65 to 69"    "70 to 74"   
+[16] "75 to 79"    "80 to 84"    "85 to 89"    "90 and over"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#res_by_area</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Define function that plot for one area, so that codes can be re-usable by inputing different area names as parameters.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plot_one_area <span class="ot">&lt;-</span> <span class="cf">function</span>(area){</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># area name as parameter</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  area_data <span class="ot">&lt;-</span> <span class="fu">subset</span>(res_by_area, PA<span class="sc">==</span>area)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#compute total population</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  area_population <span class="ot">&lt;-</span> <span class="fu">sum</span>(area_data<span class="sc">$</span>total_pop)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#compute population% by sex &amp; AG over total population in the area</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#use case_when to split male and female population to different size, by using +/- numbers</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  area_data <span class="ot">&lt;-</span> <span class="fu">mutate</span>(area_data,<span class="at">PopPerc=</span><span class="fu">case_when</span>(Sex<span class="sc">==</span><span class="st">'Females'</span><span class="sc">~</span><span class="fu">round</span>(total_pop <span class="sc">/</span> area_population, <span class="dv">4</span>), </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                                       <span class="cn">TRUE</span><span class="sc">~-</span><span class="fu">round</span>(total_pop <span class="sc">/</span> area_population, <span class="dv">4</span>)), </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">signal=</span><span class="fu">case_when</span>(Sex<span class="sc">==</span><span class="st">'Females'</span><span class="sc">~</span><span class="dv">1</span>,<span class="cn">TRUE</span><span class="sc">~-</span><span class="dv">1</span>))</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#compute female% and male%</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  malePop <span class="ot">&lt;-</span> <span class="fu">sum</span>((<span class="fu">subset</span>(area_data, Sex<span class="sc">==</span><span class="st">'Males'</span>)<span class="sc">$</span>total_pop))</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  femalePop <span class="ot">&lt;-</span> <span class="fu">sum</span>((<span class="fu">subset</span>(area_data, Sex<span class="sc">==</span><span class="st">'Females'</span>)<span class="sc">$</span>total_pop))</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  malePerc <span class="ot">&lt;-</span> <span class="fu">round</span>(malePop<span class="sc">/</span>(malePop<span class="sc">+</span>femalePop)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">1</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  femalePerc <span class="ot">&lt;-</span> <span class="fu">round</span>(femalePop<span class="sc">/</span>(malePop<span class="sc">+</span>femalePop)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">1</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">#sex-age pyramid of one area</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(area_data) <span class="sc">+</span> </span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>AG,<span class="at">y=</span>PopPerc,<span class="at">fill =</span> Sex), </span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>             <span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"red"</span>,<span class="st">"darkblue"</span>)) <span class="sc">+</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">data=</span>res_total, <span class="fu">aes</span>(<span class="at">x=</span>AG,<span class="at">y=</span>PopPerc), <span class="at">stat =</span> <span class="st">'identity'</span>, </span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"grey"</span>,<span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">alpha=</span><span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">'Age Group'</span>, <span class="at">y=</span> <span class="st">'Population% within area'</span>,<span class="at">size=</span><span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">#change the negative labels to positive, and annotate with percentage sign</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.05</span>, <span class="sc">-</span><span class="fl">0.025</span>,<span class="dv">0</span>, <span class="fl">0.025</span>,<span class="fl">0.05</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'5%'</span>,<span class="st">'2.5%'</span>,<span class="st">'0'</span>, <span class="st">'2.5%'</span>,<span class="st">'5%'</span>)) <span class="sc">+</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">#label male:female ratio to give additional information in the area</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="at">size=</span><span class="dv">3</span>,</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="dv">18</span>,<span class="fl">0.035</span>,<span class="at">label=</span><span class="fu">paste</span>(<span class="st">"Female: "</span>, femalePerc, <span class="st">'%'</span>, <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>,<span class="st">'Male:'</span>, malePerc, <span class="st">'%'</span>)),</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>              <span class="at">colour =</span> <span class="st">'black'</span>,<span class="at">alpha=</span><span class="fl">0.5</span>)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">#return the plot</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="combine-plots-of-9-areas" class="level3">
+<h3 class="anchored" data-anchor-id="combine-plots-of-9-areas">Combine Plots of 9 Areas</h3>
+<p>Finally, combine the background and foreground using <code>Patchwork</code> package, and annotate title and subtitle. The codes and final meke-over visualization is shown as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#define the 9 selected areas</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>areas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Bedok'</span>, <span class="st">'Choa Chu Kang'</span>, <span class="st">'Hougang'</span>, </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Jurong West'</span>, <span class="st">'Punggol'</span>, <span class="st">'Sengkang'</span>, </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Tampines'</span>, <span class="st">'Woodlands'</span>, <span class="st">'Yishun'</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#initialize new list</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>graphs<span class="ot">=</span><span class="fu">list</span>()</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#combine the 9 plots</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> (<span class="fu">plot_one_area</span>(areas[<span class="dv">1</span>])<span class="sc">+</span><span class="fu">plot_one_area</span>(areas[<span class="dv">2</span>])<span class="sc">+</span><span class="fu">plot_one_area</span>(areas[<span class="dv">3</span>]))<span class="sc">/</span>(<span class="fu">plot_one_area</span>(areas[<span class="dv">4</span>])<span class="sc">+</span><span class="fu">plot_one_area</span>(areas[<span class="dv">5</span>])<span class="sc">+</span><span class="fu">plot_one_area</span>(areas[<span class="dv">6</span>]))<span class="sc">/</span>(<span class="fu">plot_one_area</span>(areas[<span class="dv">7</span>])<span class="sc">+</span><span class="fu">plot_one_area</span>(areas[<span class="dv">8</span>])<span class="sc">+</span><span class="fu">plot_one_area</span>(areas[<span class="dv">9</span>]))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#produce the final plot</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>final <span class="ot">&lt;-</span> combined <span class="sc">+</span> </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">'Age-sex Pyramid of 9 most densely populated area, June 2022'</span>,</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>                  <span class="at">subtitle =</span> <span class="st">'Light-Grey Area Represents Age-sex Pyramid of SG Total Population'</span>,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">tag_levels =</span> <span class="fu">list</span>(areas),</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">theme =</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>                                <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>)),</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">caption =</span> <span class="st">'Data Source: SingStat'</span>) <span class="sc">+</span> </span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">6</span>),</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>,<span class="at">face=</span><span class="st">"bold"</span>,<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">guides =</span> <span class="st">"collect"</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>final</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="takehome_2_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="1728"></p>
+</div>
+</div>
+</section>
+<section id="advantages-of-makeover-design" class="level3">
+<h3 class="anchored" data-anchor-id="advantages-of-makeover-design">Advantages of Makeover design</h3>
+<p>Compared to the original design, the makeover design has the following advantages:</p>
+<ul>
+<li><p>it hides unnecessary details by hiding values for every bar.</p></li>
+<li><p>it shows the population% of each area, overlayed by SG total population% (instead of using absolute values); hence, we can do “apple-to-apple” comparisons accross different areas without being distracted by different population sizes.</p></li>
+<li><p>it provides addidtional infomation by annotating male-to-female ratio of different areas.</p></li>
+<li><p>it keeps the good sides of the original design, in terms of asthetic and clarity.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="takeaways" class="level1">
+<h1>4. Takeaways</h1>
+<p>To me, take-home exercise 2 serves as a reflection of take-home exercise 1. When I was reviewing other classmates’ work, I did realize there is something that I can improve on in my exercise 1, and also acknowledge some of the highlights in my exercise 1 that stand out from my peers’ works. Here are my key takeaways:</p>
+<ul>
+<li><p>Visualization is about balance of information. While a large amount information can be insightful, it can also distract and confuse the audience as there is no emphasis on the graph.</p></li>
+<li><p>Aesthetic is as important as clarity. While functionality is less obvious, good aesthetic can be appealing to human eyes, and audience may be more patient to interpret the information within.</p></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

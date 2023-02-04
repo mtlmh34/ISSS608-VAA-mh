@@ -83,7 +83,7 @@ ggscatterstats(
   )
 ```
 
-### Visualising Models
+## 3. Visualising Models
 
 ```{r}
 pacman::p_load(readxl, performance, parameters, see, gtsummary)
@@ -103,7 +103,7 @@ model <- lm(Price ~ Age_08_04 + Mfg_Year + KM +
 tbl_regression(model)
 ```
 
-Check multi-collinearity:
+#### Visualizing multi-collinearity
 
 ```{r}
 check_c <- check_collinearity(model)
@@ -119,9 +119,15 @@ check_n <- check_normality(model1)
 plot(check_n)
 ```
 
-Complete check on the model:
+#### Complete Dignostic of Model
 
 ```{r,fig.width=12,fig.height=9}
 check_model(model1)
+```
+#### Visualising Regression Parameters
+
+```{r}
+ggcoefstats(model1, 
+            output = "plot")
 ```
 

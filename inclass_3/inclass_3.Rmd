@@ -17,6 +17,8 @@ output:
     toc_depth: 3
 ---
 
+![](inclass-3.jpg){width="17" height="10"}
+
 ## Installing and loading R packages
 
 Two packages will be installed and loaded: tidyverse and ggiraph.

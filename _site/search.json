@@ -81,14 +81,14 @@
     "href": "Gallery.html",
     "title": "Gallery",
     "section": "",
-    "text": "Hands-on Exercise 1: ggplot using R\n\n\n\n\n\nCreating 1st data visualisation using ggplot package in R.\n\n\n\n\n\n\nJan 13, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHands-on Exercise 2\n\n\n\n\n\nCreating 1st data visualisation using ggplot package in R.\n\n\n\n\n\n\nInvalid Date\n\n\nLiang Minghao\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHands-on Exercise 3\n\n\n\n\n\nInteractive Data Visualisation with R.\n\n\n\n\n\n\nInvalid Date\n\n\nLiang Minghao\n\n\n\n\n\n\n  \n\n\n\n\nIn-Class Exercise 1\n\n\n\n\n\nVisualization of Sales and Profit Summary of a store using Tableau Desktop.\n\n\n\n\n\n\nJan 14, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\n  \n\n\n\n\nIn-Class Exercise 2\n\n\n\n\n\nExploring interactivity in visual analytics using Tableau Desktop.\n\n\n\n\n\n\nInvalid Date\n\n\nLiang Minghao\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn-Class Exercise 3\n\n\n\n\n\nExploring interactivity in visual analytics using R.\n\n\n\n\n\n\nJan 28, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn-Class Exercise 4\n\n\n\n\n\nR: Fundamentals of Visual Analytics\n\n\n\n\n\n\nFeb 4, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\n  \n\n\n\n\nLiang Minghao’s Visual Analytics Portfolio\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nTake-Home Exercise 1\n\n\n\n\n\nReveal demographic structure of nine selected planning areas on a single view by using trellis display.\n\n\n\n\n\n\nJan 13, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\n  \n\n\n\n\nTake-Home Exercise 2\n\n\n\n\n\nTake-home exercise 2 is a review of take-home exersise 1 of our peers; critics and adjustment is done using R graphical packages, based on some of the areas of improvement in the work.\n\n\n\n\n\n\nInvalid Date\n\n\nLiang Minghao\n\n\n\n\n\n\nNo matching items"
+    "text": "Hands-on Exercise 1: ggplot using R\n\n\n\n\n\nCreating 1st data visualisation using ggplot package in R.\n\n\n\n\n\n\nJan 13, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHands-on Exercise 2\n\n\n\n\n\nCreating 1st data visualisation using ggplot package in R.\n\n\n\n\n\n\nInvalid Date\n\n\nLiang Minghao\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHands-on Exercise 3\n\n\n\n\n\nInteractive Data Visualisation with R.\n\n\n\n\n\n\nInvalid Date\n\n\nLiang Minghao\n\n\n\n\n\n\n  \n\n\n\n\nIn-Class Exercise 1\n\n\n\n\n\nVisualization of Sales and Profit Summary of a store using Tableau Desktop.\n\n\n\n\n\n\nJan 14, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\n  \n\n\n\n\nIn-Class Exercise 2\n\n\n\n\n\nExploring interactivity in visual analytics using Tableau Desktop.\n\n\n\n\n\n\nInvalid Date\n\n\nLiang Minghao\n\n\n\n\n\n\n  \n\n\n\n\nIn-Class Exercise 3\n\n\n\n\n\nExploring interactivity in visual analytics using R.\n\n\n\n\n\n\nJan 28, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn-Class Exercise 4: Plotly\n\n\n\n\n\nR: Fundamentals of Visual Analytics\n\n\n\n\n\n\nFeb 4, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\n  \n\n\n\n\nLiang Minghao’s Visual Analytics Portfolio\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nTake-Home Exercise 1\n\n\n\n\n\nReveal demographic structure of nine selected planning areas on a single view by using trellis display.\n\n\n\n\n\n\nJan 13, 2023\n\n\nLiang Minghao\n\n\n\n\n\n\n  \n\n\n\n\nTake-Home Exercise 2\n\n\n\n\n\nTake-home exercise 2 is a review of take-home exersise 1 of our peers; critics and adjustment is done using R graphical packages, based on some of the areas of improvement in the work.\n\n\n\n\n\n\nInvalid Date\n\n\nLiang Minghao\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "inclass_3/inclass_3.html",
     "href": "inclass_3/inclass_3.html",
     "title": "In-Class Exercise 3",
     "section": "",
-    "text": "Two packages will be installed and loaded: tidyverse and ggiraph.\n\npacman::p_load(ggiraph,tidyverse)"
+    "text": "1"
   },
   {
     "objectID": "inclass_3/inclass_3.html#importing-data",
@@ -107,9 +107,9 @@
   {
     "objectID": "inclass_4/inclass_4.html",
     "href": "inclass_4/inclass_4.html",
-    "title": "In-Class Exercise 4: Plotly",
+    "title": "In-Class Exercise 4",
     "section": "",
-    "text": "pacman::p_load(plotly, DT, patchwork, tidyverse)\nexam_data <- read_csv('../Data/Exam_data.csv')"
+    "text": "pacman::p_load(plotly, DT, patchwork, ggstatsplot, tidyverse)\nexam_data <- read_csv('../Data/Exam_data.csv')"
   },
   {
     "objectID": "inclass_4/inclass_4.html#plotly",
@@ -145,5 +145,47 @@
     "title": "Take-Home Exercise 1",
     "section": "",
     "text": "1. Overview\nIn this exercise, the demographic structure of Singapore at planning area level will be revealed using age-sex pyramid method; data of nine selected planning areas will be presented on a single view by using trellis display.\nThe data used in this exercise is from SingStat, and read into Tableau Desktop 2022.4 for data visualization.\nThe data contains 7 columns:\n\n\n\nData Dictionary\n\n\ncolumns\ninterpretation\n\n\n\n\nPA\nPlanning Zone\n\n\nSZ\nSubzone\n\n\nAG\nAge Group\n\n\nSex\nSex\n\n\nFA\nFloor Area of Residence\n\n\nPop\nPopulation\n\n\nTime\nTime period\n\n\n\n\n\n\n\n2. Choosing The 9 Planning Areas\nThe following nine planning area are chosen: Tempines, Seng Kang, Ang Mo Kio, Woodlands, Chua Chu Kang, Jurong West, Toa Payoh, Queenstown, Bukit Timah.\nJustification/Reasons to choose these areas: these planning areas are top 2 or 3 in population within their own regions, which means the population size is sufficient for us to visualize the demographic structure, compared to those areas with a smaller population.\n\n\n3. Visualization on Tableau\nThe outcome of visualization can be viewed on Minghao’s Tableau Public.\n\n\n\n\nThe Final Age Pyramid Trellis Charts of 9 Residential Area\n\n\n\n\n\n4. Insights and Observations\n\nAs a general trend, the visualization indicates that age pyramids of 9 planning areas in Singapore tend to be constrictive, meaning that the bottom part (i.e., children and youths) is narrow and has a smaller population, whereas the middle-top (i.e., mid-age/elderly) part is huge in population. This shows Singapore has entered into an aging society.\nSengkang, as one of the more newly established estate areas, have the youngest demographic structure among all selected areas, as it is shown that the age pyramid peaks at 35-39 (for female) and 40-44 (for male); the bottom part of age pyramid of Sengkang is also the widest among all, representing a more significant number of young people in the area.\nFor earlier established areas such as Ang Mo Kio, Choa Chu Kang, Tampines and Woodlands, the age pyramids tilt towards the top to a large extent, indicating a more aging community within the areas.\nGovernment should pay more attention to these areas and implement more elderly-oriented facilities, such that the needs of aged people can be taken care of.\n\n\n\n5. Step-by-Step Procedures\n\n5.1 Data Preparation\n\n\n\n\n\n\n\n\nNo.\nSteps\nAction\n\n\n\n\n1\nLoad the required data “residents_by_area.csv”\n\n\n\n2\nPress the “+” button, select “Add clean step”\n\n\n\n3\nSelect “Filter - Selected values”\n\n\n\n4\nSelect the 9 destinated planning areas\n\n\n\n5\nRemove Column Time, as all rows are from year 2022, hence the column is redundant\n\n\n\n6\nOutput the prepared data as .csv file\n\n\n\n\n\n\n5.2 Data Visualization\n\n\n\n\n\n\n\n\nNo.\nSteps\nAction\n\n\n\n\n1\nCreate new calculation field “Col” using the following formula (To assign column index)\n\n\n\n2\nCreate new calculation field “Rows” using the following formula (To assign row index)\n\n\n\n3\nCreate new variable “Males Pop” so that only male population is displayed\n\n\n\n4\nCreate new variable “Females Pop” so that only female population is displayed\n\n\n\n5\nDrag “Females Pop” and “Males Pop” onto Column Page, and drag “AG” to Rows Page. Right click horizontal axis, select “edit axis” and check “Reversed” field.\n\n\n\n6\nDrag “Col” onto Column Page and drag “Rows” to Rows Page; Drag “PA” to Detail Mark\n\n\n\n7\nFor “Col” and “Rows” fields, select Compute Using - PA\n\n\n\n8\nUnder Marks - All, select min/max Label for SUM(Females Pop) and SUM(Males Pop); uncheck “Label minimum value” to display the maximum values only\n\n\n\n9\nRename the worksheet and save."
+  },
+  {
+    "objectID": "inclass_3/inclass_3.html#installing-and-loading-r-packages",
+    "href": "inclass_3/inclass_3.html#installing-and-loading-r-packages",
+    "title": "In-Class Exercise 3",
+    "section": "Installing and loading R packages",
+    "text": "Installing and loading R packages\nTwo packages will be installed and loaded: tidyverse and ggiraph.\n\npacman::p_load(ggiraph,tidyverse)"
+  },
+  {
+    "objectID": "inclass_4/inclass_4.html#using-plotly-api-directly",
+    "href": "inclass_4/inclass_4.html#using-plotly-api-directly",
+    "title": "In-Class Exercise 4",
+    "section": "1. Using Plotly API Directly",
+    "text": "1. Using Plotly API Directly\n\nplot_ly(data = exam_data, \n        x = ~ENGLISH, \n        y = ~MATHS, \n        color = ~RACE)"
+  },
+  {
+    "objectID": "inclass_4/inclass_4.html#use-ggplotly-wrapper",
+    "href": "inclass_4/inclass_4.html#use-ggplotly-wrapper",
+    "title": "In-Class Exercise 4",
+    "section": "2. Use ggplotly() Wrapper",
+    "text": "2. Use ggplotly() Wrapper\ncreate normal ggplot() first, and use ggplotly() to wrap over the plot object.\n\np <- ggplot(data=exam_data, \n            aes(x = MATHS,\n                y = ENGLISH)) +\n  geom_point(size = 1) +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100))\nggplotly(p) #<<"
+  },
+  {
+    "objectID": "inclass_4/inclass_4.html#visual-statistical-analysis-with-ggstatsplot",
+    "href": "inclass_4/inclass_4.html#visual-statistical-analysis-with-ggstatsplot",
+    "title": "In-Class Exercise 4",
+    "section": "2. Visual Statistical Analysis with ggstatsplot",
+    "text": "2. Visual Statistical Analysis with ggstatsplot\n\nTwo-sample mean test: ggbetweenstats()\n\nggbetweenstats(\n  data = exam_data,\n  x = GENDER, \n  y = MATHS,\n  type = \"p\",\n  messages = FALSE\n)\n\n\n\n\n\n\nSignificant Test of Correlation: ggscatterstats()\n\nggscatterstats(\n  data = exam_data,\n  x = MATHS,\n  y = ENGLISH,\n  marginal = TRUE, #marginal histogram\n  )\n\n\n\n\n\n\nVisualising Models\n\npacman::p_load(readxl, performance, parameters, see, gtsummary)\n\n\ncar_resale <- read_xls('../Data/ToyotaCorolla.xls')\n\nLinear regression model\n\nmodel <- lm(Price ~ Age_08_04 + Mfg_Year + KM + \n              Weight + Guarantee_Period, data = car_resale)\n\n#use gtsummary to show tabulated result of the variables\ntbl_regression(model)\n\n\n\n\n\n  \n  \n    \n      Characteristic\n      Beta\n      95% CI1\n      p-value\n    \n  \n  \n    Age_08_04\n-14\n-35, 7.1\n0.2\n    Mfg_Year\n1,315\n1,059, 1,571\n<0.001\n    KM\n-0.02\n-0.03, -0.02\n<0.001\n    Weight\n19\n17, 21\n<0.001\n    Guarantee_Period\n28\n3.8, 52\n0.023\n  \n  \n  \n    \n      1 CI = Confidence Interval\n    \n  \n\n\n\n\nCheck multi-collinearity:\n\ncheck_c <- check_collinearity(model)\nplot(check_c)\n\n\n\n\nNew model, with the highly correlated variable taken out:\n\nmodel1 <- lm(Price ~ Age_08_04 + KM + \n              Weight + Guarantee_Period, data = car_resale)\ncheck_n <- check_normality(model1)\nplot(check_n)\n\n\n\n\nComplete check on the model:\n\ncheck_model(model1)"
+  },
+  {
+    "objectID": "inclass_4/inclass_4.html#viz-using-plotly",
+    "href": "inclass_4/inclass_4.html#viz-using-plotly",
+    "title": "In-Class Exercise 4",
+    "section": "1. Viz Using Plotly",
+    "text": "1. Viz Using Plotly\n\nUsing Plotly API Directly\n\nplot_ly(data = exam_data, \n        x = ~ENGLISH, \n        y = ~MATHS, \n        color = ~RACE)\n\n\n\n\n\n\n\nUse ggplotly() Wrapper\ncreate normal ggplot() first, and use ggplotly() to wrap over the plot object.\n\np <- ggplot(data=exam_data, \n            aes(x = MATHS,\n                y = ENGLISH)) +\n  geom_point(size = 1) +\n  coord_cartesian(xlim=c(0,100),\n                  ylim=c(0,100))\nggplotly(p) #<<"
+  },
+  {
+    "objectID": "inclass_4/inclass_4.html#visualising-models",
+    "href": "inclass_4/inclass_4.html#visualising-models",
+    "title": "In-Class Exercise 4",
+    "section": "Visualising Models",
+    "text": "Visualising Models"
   }
 ]

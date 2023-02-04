@@ -130,4 +130,48 @@ check_model(model1)
 ggcoefstats(model1, 
             output = "plot")
 ```
+## 4. Visualising Uncertainty
+
+Calculate no. of rows, mean and s.d., aggregated by RACE.
+```{r}
+my_sum <- exam_data %>%
+  group_by(RACE) %>%
+  summarise(
+    n=n(),
+    mean=mean(MATHS),
+    sd=sd(MATHS)
+    ) %>%
+  mutate(se=sd/sqrt(n-1))
+my_sum
+```
+
+
+
+```{r}
+ggplot(my_sum) +
+  geom_errorbar(
+    aes(x=RACE, 
+        ymin=mean-se, 
+        ymax=mean+se), 
+    width=0.2, 
+    colour="black", 
+    alpha=0.9, 
+    size=0.5) +
+  geom_point(aes
+           (x=RACE, 
+            y=mean), 
+           stat="identity", 
+           color="red",
+           size = 1.5,
+           alpha= 0.7) +
+  ggtitle("Standard error of mean 
+          maths score by race")
+```
+
+
+
+
+
+
+
 

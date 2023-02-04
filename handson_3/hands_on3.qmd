@@ -19,17 +19,23 @@ output:
 ## Getting Started
 
 ### Import libraries & read sample data
+
 ```{r warning=FALSE}
 pacman::p_load(ggiraph, plotly, gganimate, DT, tidyverse, patchwork)
 ```
 
 ### Load Data
+
 ```{r}
 exam_data <- read.csv('/Users/minghaooo/Documents/Term 4/ISSS608-Visual Analytics/inclass-1/Exam_data.csv')
 ```
 
-### 
+### Interactive dotplot
+
+The default tootip shows student ID when hovering.
+
 ```{r}
+#interactive graph object
 p <- ggplot(data=exam_data, 
        aes(x = MATHS)) +
   geom_dotplot_interactive(
@@ -38,12 +44,103 @@ p <- ggplot(data=exam_data,
     binwidth = 1, 
     method = "histodot") +
   scale_y_continuous(NULL, 
-                     breaks = NULL)
+                     breaks = NULL) +
+  ggtitle('Basic dotplot of students')
 
-# create interative
+# create container
 girafe(
   ggobj = p,
   width_svg = 6,
   height_svg = 6*0.618
 )
 ```
+
+### Display more info on tooltip, and customize its style
+
+Extra information of class name is also added in.
+
+```{r}
+
+# create new field, concatenate ID and Class
+exam_data$tooltip <- c(paste0(     #<<
+  "Name = ", exam_data$ID,         #<<
+  "\n Class = ", exam_data$CLASS)) #<<
+
+# Customized CSS style
+tooltip_css <- "background-color:white; #<<
+font-style:bold; color:black;" #<<
+
+p <- ggplot(data=exam_data, 
+       aes(x = MATHS)) +
+  geom_dotplot_interactive(
+    aes(tooltip = exam_data$tooltip), #<<
+    stackgroups = TRUE,
+    binwidth = 1,
+    method = "histodot") +
+  scale_y_continuous(NULL,               
+                     breaks = NULL) +
+  ggtitle('Shows student number and class name')
+girafe(
+  ggobj = p,
+  width_svg = 8,
+  height_svg = 8*0.618,
+  options = list(    #<<
+    opts_tooltip(    #<<
+      css = tooltip_css)
+    ) #<<
+)
+```
+
+### Displaying statistics on tooltip
+
+Shows mean with standard error of mean (SEM).
+
+```{r}
+tooltip <- function(y, ymax, accuracy = .01) {   #<<
+  mean <- scales::number(y, accuracy = accuracy) #<<
+  sem <- scales::number(ymax - y, accuracy = accuracy) #<<
+  paste("Mean maths scores:", mean, "+/-", sem) #<<
+} #<<
+
+gg_point <- ggplot(data=exam_data, 
+                   aes(x = RACE),
+) +
+  ggtitle('Boxplots with mean and SEM') +
+  stat_summary(aes(y = MATHS, 
+                   tooltip = after_stat(  #<<
+                     tooltip(y, ymax))),  #<<
+    fun.data = "mean_se", 
+    geom = GeomInteractiveCol,  #<<
+    fill = "light blue"
+  ) +
+  stat_summary(aes(y = MATHS),
+    fun.data = mean_se,
+    geom = "errorbar", width = 0.2, size = 0.2
+  )
+
+girafe(ggobj = gg_point,
+       width_svg = 8,
+       height_svg = 8*0.618)
+
+```
+
+
+
+```{r}
+p <- ggplot(data=exam_data, 
+       aes(x = MATHS)) +
+  geom_dotplot_interactive(           
+    aes(tooltip = tooltip, data_id = CLASS),             #<<
+    stackgroups = TRUE,               
+    binwidth = 1,                        
+    method = "histodot") +               
+  scale_y_continuous(NULL,               
+                     breaks = NULL) +
+  ggtitle('Highlighting students from the same class')
+girafe(                                  
+  ggobj = p,                             
+  width_svg = 6,                         
+  height_svg = 6*0.618                      
+)                                        
+```
+

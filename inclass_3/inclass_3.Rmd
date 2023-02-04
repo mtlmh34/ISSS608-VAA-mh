@@ -9,11 +9,7 @@ author:
     affiliation_url: https://scis.smu.edu.sg/master-it-business
 date: "Jan 28 2023"
 date modified: "`r Sys.Date()`"
-execute: 
-  echo: true
-  eval: true
-  warning: false
-preview: 
+preview: inclass-3.jpg
 output:
   distill::distill_article:
     self_contained: false
@@ -36,14 +32,19 @@ exam_data <- read_csv('../Data/Exam_data.csv')
 ```
 
 ## Visualization
+
 ### Dotplot using ggplot2
+
 ```{r}
 ggplot(exam_data,
        aes(x=MATHS)) +
   geom_dotplot(dotsize = .5)
 ```
+
 ### Interactive dotplot using girafe
+
 Notice student id is shown when it is being hovered on.
+
 ```{r}
 exam_data$tooltip <- c(paste0(
   "Name = ", exam_data$ID,

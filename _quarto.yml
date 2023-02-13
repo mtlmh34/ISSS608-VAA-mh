@@ -44,8 +44,9 @@ collections:
     categories: true
     categories_metadata: true
     authors_metadata: true
-format:
+format: 
   html:
+    page-layout: full
     theme: solar
     css: styles.css
     toc: true

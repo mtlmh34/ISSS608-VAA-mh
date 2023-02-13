@@ -9,7 +9,6 @@ author:
     affiliation_url: https://scis.smu.edu.sg/master-it-business
 date: "Feb 13 2023"
 date modified: "`r Sys.Date()`"
-format: html
 execute: 
   echo: true
   eval: true
@@ -27,3 +26,50 @@ output:
 This take-home exercise aims to reveal the salient patterns of the resale prices of public housing properties by residential towns and estates in Singapore.
 
 The dataset used in take-home exercise 3 is downloaded from [Data.gov.sg](https://data.gov.sg/dataset/resale-flat-prices?resource_id=f1765b54-a209-4718-8d38-a39237f502b3), and processed by RStudio `tidyverse` family of packages and visualized by `ggplot2` and its extensions.
+
+## 1.1. Loading Libraries
+
+Using `pacman` package to load visualization packages.
+
+```{r}
+pacman::p_load(tidyverse, DT, ggstatsplot, ggiraph, gganimate, gifski, ggthemes)
+```
+
+## 1.2. Loading Data
+
+Previewing the head rows of the data to observe the columns.
+
+```{r}
+resale_data <- read_csv("../Data/resale-flat-prices-based-on-registration-date-from-jan-2017-onwards.csv")
+
+options(DT.options = list(pageLength = 5))
+DT::datatable(head(resale_data,20),class ="cell-border stripe",style = "bootstrap") #%>% formatStyle(names(resale_data),backgroundColor = 'grey')
+```
+
+## 1.3. Data Pre-Processing
+
+For this study, we are interested in the **3-ROOM, 4-ROOM** and **5-ROOM** flats that are sold during the year of **2022**.
+
+```{r}
+unique(resale_data$flat_type)
+```
+
+```{r}
+resale_2022 <- resale_data %>% 
+  # filter rows containing substring 2022 in month column,
+  # and 3/4/5 ROOM in flat_type column
+  filter(str_detect(month, '2022'), str_detect(flat_type, '3 ROOM|4 ROOM|5 ROOM')) %>%
+  # extract the year of sale
+  mutate(sale_year=as.integer(str_sub(month, start = 1L, end = 4L))) %>%
+  # extract the month of sale
+  mutate(sale_month=as.integer(str_sub(month, start = 6L, end = -1L))) %>%
+  # extract the remaining lease in years
+  mutate(remaining_lease_years=as.integer(str_sub(remaining_lease, start = 1L, end = 2L))) %>%
+  # calculate the price/sqm
+  mutate(psqm=round(resale_price / floor_area_sqm, 2))
+
+DT::datatable(resale_2022,class ="cell-border stripe",style = "bootstrap") %>%
+DT::formatStyle(columns = colnames(.), fontSize = '20%')
+```
+
+

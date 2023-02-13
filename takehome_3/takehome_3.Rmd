@@ -22,3 +22,8 @@ output:
     toc_depth: 3
 ---
 
+# 1. Overview
+
+This take-home exercise aims to reveal the salient patterns of the resale prices of public housing properties by residential towns and estates in Singapore.
+
+The dataset used in take-home exercise 3 is downloaded from [Data.gov.sg](https://data.gov.sg/dataset/resale-flat-prices?resource_id=f1765b54-a209-4718-8d38-a39237f502b3), and processed by RStudio `tidyverse` family of packages and visualized by `ggplot2` and its extensions.

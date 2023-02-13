@@ -194,21 +194,18 @@ final
 
 Compared to the original design, the makeover design has the following advantages:
 
-- it hides unnecessary details by hiding values for every bar.
+-   it hides unnecessary details by hiding values for every bar.
 
-- it shows the population% of each area, overlayed by SG total population% (instead of using absolute values);
-hence, we can do "apple-to-apple" comparisons accross different areas without being distracted by different population sizes.
+-   it shows the population% of each area, overlayed by SG total population% (instead of using absolute values); hence, we can do "apple-to-apple" comparisons accross different areas without being distracted by different population sizes.
 
-- it provides addidtional infomation by annotating male-to-female ratio of different areas.
+-   it provides addidtional infomation by annotating male-to-female ratio of different areas.
 
-- it keeps the good sides of the original design, in terms of asthetic and clarity.
+-   it keeps the good sides of the original design, in terms of asthetic and clarity.
 
 # 4. Takeaways
 
 To me, take-home exercise 2 serves as a reflection of take-home exercise 1. When I was reviewing other classmates' work, I did realize there is something that I can improve on in my exercise 1, and also acknowledge some of the highlights in my exercise 1 that stand out from my peers' works. Here are my key takeaways:
 
-- Visualization is about balance of information. While a large amount information can be insightful, it can also distract and confuse the audience as there is no emphasis on the graph. 
+-   Visualization is about balance of information. While a large amount information can be insightful, it can also distract and confuse the audience as there is no emphasis on the graph.
 
-- Aesthetic is as important as clarity. While functionality is less obvious, good aesthetic can be appealing to human eyes, and audience may be more patient to interpret the information within.
-
-
+-   Aesthetic is as important as clarity. While functionality is less obvious, good aesthetic can be appealing to human eyes, and audience may be more patient to interpret the information within.

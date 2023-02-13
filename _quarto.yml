@@ -12,6 +12,8 @@ website:
           href: 'handson_2/hands_on2.qmd'
         - text: 'Hands-on Exercise 3'
           href: 'handson_3/hands_on3.qmd'
+        - text: 'Hands-on Exercise 4'
+          href: 'handson_4/handson_4.Rmd'
     - text: "In-Class Exercise"
       menu:
         - text: "In-Class 1: Tableau Visualisation"

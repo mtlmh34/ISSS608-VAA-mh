@@ -124,8 +124,6 @@ girafe(ggobj = gg_point,
 
 ```
 
-
-
 ```{r}
 p <- ggplot(data=exam_data, 
        aes(x = MATHS)) +
@@ -143,4 +141,3 @@ girafe(
   height_svg = 6*0.618                      
 )                                        
 ```
-

@@ -1,1 +1,68 @@
+---
+title: "Hands-on Exercise 4"
+categories: hands-on exercise
+description: |
+  Fundamentals of Visual Analytics with R
+author:
+  - name: Liang Minghao
+    affiliation: SMU, MITB
+    affiliation_url: https://scis.smu.edu.sg/master-it-business
+date: "Feb 04 2023"
+preview:
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 3
+---
+
+## Data and Libraries
+
+```{r}
+pacman::p_load(ggstatsplot, tidyverse)
+exam <- read_csv('/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/Exam_data.csv')
+```
+## One Sample Test
+
+```{r}
+set.seed(1234)
+
+gghistostats(
+  data = exam,
+  x = ENGLISH,
+  type = "bayes",
+  test.value = 60,
+  xlab = "English scores"
+)
+```
+
+## Two Sample Mean Test
+
+```{r}
+ggbetweenstats(
+  data = exam,
+  x = GENDER, 
+  y = MATHS,
+  type = "np",
+  messages = FALSE
+)
+```
+
+## One-way ANOVA Test
+
+```{r}
+library(ggstatsplot)
+ggbetweenstats(
+  data = exam,
+  x = RACE, 
+  y = ENGLISH,
+  type = "p",
+  mean.ci = TRUE, 
+  pairwise.comparisons = TRUE, 
+  pairwise.display = "s",
+  p.adjust.method = "fdr",
+  messages = FALSE
+)
+```
+
 

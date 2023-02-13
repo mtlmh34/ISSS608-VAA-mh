@@ -1,0 +1,24 @@
+---
+title: "Take-home Exercise 3"
+categories: take-home exercise
+description: |
+  The focus of this exercise is to perform insightful data visualization to uncover the salient patterns of the resale prices of public housing property by residential towns and estates in Singapore.
+author:
+  - name: Liang Minghao
+    affiliation: SMU, MITB
+    affiliation_url: https://scis.smu.edu.sg/master-it-business
+date: "Feb 13 2023"
+date modified: "`r Sys.Date()`"
+format: html
+execute: 
+  echo: true
+  eval: true
+  warning: false
+preview: 
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 3
+---
+

@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Liang Minghao">
-<meta name="dcterms.date" content="2023-01-13">
-<meta name="description" content="Reveal demographic structure of nine selected planning areas on a single view by using trellis display.">
+<meta name="dcterms.date" content="2023-02-13">
+<meta name="description" content="The focus of this exercise is to perform insightful data visualization to uncover the salient patterns of the resale prices of public housing property by residential towns and estates in Singapore.">
 
-<title>ISSS608-VAA-mh - Take-Home Exercise 1</title>
+<title>ISSS608-VAA-mh - Take-home Exercise 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -165,28 +165,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">1. Overview</a></li>
-  <li><a href="#choosing-the-9-planning-areas" id="toc-choosing-the-9-planning-areas" class="nav-link" data-scroll-target="#choosing-the-9-planning-areas">2. Choosing The 9 Planning Areas</a></li>
-  <li><a href="#visualization-on-tableau" id="toc-visualization-on-tableau" class="nav-link" data-scroll-target="#visualization-on-tableau">3. Visualization on Tableau</a></li>
-  <li><a href="#insights-and-observations" id="toc-insights-and-observations" class="nav-link" data-scroll-target="#insights-and-observations">4. Insights and Observations</a></li>
-  <li><a href="#step-by-step-procedures" id="toc-step-by-step-procedures" class="nav-link" data-scroll-target="#step-by-step-procedures">5. Step-by-Step Procedures</a>
-  <ul class="collapse">
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">5.1 Data Preparation</a></li>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">5.2 Data Visualization</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Take-Home Exercise 1</h1>
+<h1 class="title">Take-home Exercise 3</h1>
   <div class="quarto-categories">
     <div class="quarto-category">take-home exercise</div>
   </div>
@@ -194,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    <p>Reveal demographic structure of nine selected planning areas on a single view by using trellis display.</p>
+    <p>The focus of this exercise is to perform insightful data visualization to uncover the salient patterns of the resale prices of public housing property by residential towns and estates in Singapore.</p>
   </div>
 </div>
 
@@ -218,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 13, 2023</p>
+      <p class="date">February 13, 2023</p>
     </div>
   </div>
   
@@ -228,199 +214,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="overview" class="level1">
-<h1>1. Overview</h1>
-<p>In this exercise, the demographic structure of Singapore at planning area level will be revealed using age-sex pyramid method; data of nine selected planning areas will be presented on a single view by using trellis display.</p>
-<p>The data used in this exercise is from <a href="https://www.singstat.gov.sg/-/media/files/find_data/population/statistical_tables/respopagesexfa2022.ashx">SingStat</a>, and read into Tableau Desktop 2022.4 for data visualization.</p>
-<p>The data contains 7 columns:</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped">
-<caption>Data Dictionary</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">columns</th>
-<th style="text-align: left;">interpretation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">PA</td>
-<td style="text-align: left;">Planning Zone</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SZ</td>
-<td style="text-align: left;">Subzone</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">AG</td>
-<td style="text-align: left;">Age Group</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Sex</td>
-<td style="text-align: left;">Sex</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">FA</td>
-<td style="text-align: left;">Floor Area of Residence</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Pop</td>
-<td style="text-align: left;">Population</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Time</td>
-<td style="text-align: left;">Time period</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section id="choosing-the-9-planning-areas" class="level1">
-<h1>2. Choosing The 9 Planning Areas</h1>
-<p>The following nine planning area are chosen: <strong>Tempines, Seng Kang, Ang Mo Kio, Woodlands, Chua Chu Kang, Jurong West, Toa Payoh, Queenstown, Bukit Timah.</strong></p>
-<p>Justification/Reasons to choose these areas: these planning areas are top 2 or 3 in population within their own regions, which means the population size is sufficient for us to visualize the demographic structure, compared to those areas with a smaller population.</p>
-</section>
-<section id="visualization-on-tableau" class="level1">
-<h1>3. Visualization on Tableau</h1>
-<p>The outcome of visualization can be viewed on <a href="https://public.tableau.com/app/profile/minghao.liang/viz/take-home-1_16741369553030/AgePyramid?publish=yes">Minghao’s Tableau Public</a>.</p>
-<center>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="takehome_1_steps/final.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">The Final Age Pyramid Trellis Charts of 9 Residential Area</figcaption><p></p>
-</figure>
-</div>
-</center>
-</section>
-<section id="insights-and-observations" class="level1">
-<h1>4. Insights and Observations</h1>
-<ol type="1">
-<li><p>As a general trend, the visualization indicates that age pyramids of 9 planning areas in Singapore tend to be constrictive, meaning that the bottom part (i.e., children and youths) is narrow and has a smaller population, whereas the middle-top (i.e., mid-age/elderly) part is huge in population. This shows Singapore has entered into an aging society.</p></li>
-<li><p>Sengkang, as one of the more newly established estate areas, have the youngest demographic structure among all selected areas, as it is shown that the age pyramid peaks at 35-39 (for female) and 40-44 (for male); the bottom part of age pyramid of Sengkang is also the widest among all, representing a more significant number of young people in the area.</p></li>
-<li><p>For earlier established areas such as Ang Mo Kio, Choa Chu Kang, Tampines and Woodlands, the age pyramids tilt towards the top to a large extent, indicating a more aging community within the areas.</p></li>
-<li><p>Government should pay more attention to these areas and implement more elderly-oriented facilities, such that the needs of aged people can be taken care of.</p></li>
-</ol>
-</section>
-<section id="step-by-step-procedures" class="level1">
-<h1>5. Step-by-Step Procedures</h1>
-<section id="data-preparation" class="level3">
-<h3 class="anchored" data-anchor-id="data-preparation">5.1 Data Preparation</h3>
-<table class="table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 53%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">No.</th>
-<th style="text-align: left;">Steps</th>
-<th style="text-align: left;">Action</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">Load the required data “residents_by_area.csv”</td>
-<td style="text-align: left;"><img src="takehome_1_steps/1.jpg" class="img-fluid"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">Press the “+” button, select “Add clean step”</td>
-<td style="text-align: left;"><img src="takehome_1_steps/2.jpg" class="img-fluid"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">Select “Filter - Selected values”</td>
-<td style="text-align: left;"><img src="takehome_1_steps/3.jpg" class="img-fluid"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">Select the 9 destinated planning areas</td>
-<td style="text-align: left;"><img src="takehome_1_steps/4.jpg" class="img-fluid"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">Remove Column <em>Time</em>, as all rows are from year 2022, hence the column is redundant</td>
-<td style="text-align: left;"><img src="takehome_1_steps/5.jpg" class="img-fluid"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">6</td>
-<td style="text-align: left;">Output the prepared data as .csv file</td>
-<td style="text-align: left;"><img src="takehome_1_steps/6.jpg" class="img-fluid"></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="data-visualization" class="level3">
-<h3 class="anchored" data-anchor-id="data-visualization">5.2 Data Visualization</h3>
-<table class="table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 53%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">No.</th>
-<th style="text-align: left;">Steps</th>
-<th style="text-align: left;">Action</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">Create new calculation field “Col” using the following formula (To assign column index)</td>
-<td style="text-align: left;"><img src="takehome_1_steps/7.jpg" class="img-fluid"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">Create new calculation field “Rows” using the following formula (To assign row index)</td>
-<td style="text-align: left;"><img src="takehome_1_steps/8.jpg" class="img-fluid"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">Create new variable “Males Pop” so that only male population is displayed</td>
-<td style="text-align: left;"><img src="takehome_1_steps/9.jpg" class="img-fluid"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">Create new variable “Females Pop” so that only female population is displayed</td>
-<td style="text-align: left;"><img src="takehome_1_steps/10.jpg" class="img-fluid"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">Drag “Females Pop” and “Males Pop” onto Column Page, and drag “AG” to Rows Page. Right click horizontal axis, select “edit axis” and check “Reversed” field.</td>
-<td style="text-align: left;"><img src="takehome_1_steps/11.jpg" class="img-fluid"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">6</td>
-<td style="text-align: left;">Drag “Col” onto Column Page and drag “Rows” to Rows Page; Drag “PA” to Detail Mark</td>
-<td style="text-align: left;"><img src="takehome_1_steps/12-0.jpg" class="img-fluid"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">7</td>
-<td style="text-align: left;">For “Col” and “Rows” fields, select Compute Using - PA</td>
-<td style="text-align: left;"><img src="takehome_1_steps/12.jpg" class="img-fluid"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">8</td>
-<td style="text-align: left;">Under Marks - All, select min/max Label for SUM(Females Pop) and SUM(Males Pop); uncheck “Label minimum value” to display the maximum values only</td>
-<td style="text-align: left;"><img src="takehome_1_steps/13.jpg" class="img-fluid"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">9</td>
-<td style="text-align: left;">Rename the worksheet and save.</td>
-<td style="text-align: left;"><img src="takehome_1_steps/14.jpg" class="img-fluid"></td>
-</tr>
-</tbody>
-</table>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -124,15 +124,18 @@ plot(check_n)
 ```{r,fig.width=12,fig.height=9}
 check_model(model1)
 ```
+
 #### Visualising Regression Parameters
 
 ```{r}
 ggcoefstats(model1, 
             output = "plot")
 ```
+
 ## 4. Visualising Uncertainty
 
 Calculate no. of rows, mean and s.d., aggregated by RACE.
+
 ```{r}
 my_sum <- exam_data %>%
   group_by(RACE) %>%
@@ -144,8 +147,6 @@ my_sum <- exam_data %>%
   mutate(se=sd/sqrt(n-1))
 my_sum
 ```
-
-
 
 ```{r}
 ggplot(my_sum) +
@@ -167,11 +168,3 @@ ggplot(my_sum) +
   ggtitle("Standard error of mean 
           maths score by race")
 ```
-
-
-
-
-
-
-
-

@@ -22,6 +22,8 @@ website:
           href: 'inclass_3/inclass_3.Rmd'
         - text: "In-Class 4: Plotly"
           href: 'inclass_4/inclass_4.Rmd'
+        - text: "In-Class 5: Visual Multivariate Analysis"
+          href: 'inclass_5/inclass_5.Rmd'
     - text: "Take-home Exercise"
       menu:
         - text: "Take-Home Exercise 1"

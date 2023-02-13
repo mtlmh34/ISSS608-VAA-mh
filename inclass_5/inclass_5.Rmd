@@ -26,7 +26,10 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Import libraries and data
+
+## Ternary Diagram
+
+### Import libraries and data
 ```{r}
 pacman::p_load(ggtern, plotly, tidyverse)
 
@@ -34,7 +37,7 @@ data <- read_csv('/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/respopagsex2000to
 
 data
 ```
-## Data wranggling
+### Data wranggling
 ```{r}
 agpop_mutated <- data %>%
   mutate(`Year` = as.character(Year))%>%
@@ -47,8 +50,6 @@ agpop_mutated <- data %>%
   filter(TOTAL > 0)
 agpop_mutated
 ```
-
-## Ternary Diagram
 ```{r}
 ggtern(data=agpop_mutated,aes(x=YOUNG,y=ACTIVE, z=OLD)) + geom_point()
 ```
@@ -101,4 +102,88 @@ plot_ly(
     ternary = ternaryAxes
   )
 ```
+## Correlation Diagram
+
+### Import libraries and data
+```{r}
+pacman::p_load(corrplot, tidyverse, ggstatsplot, GGally)
+wine <- read_csv("/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/wine_quality.csv")
+wine
+```
+
+### Correlation Matrix
+```{r}
+pairs(wine[,2:12])
+```
+### Drawing the lower corner
+
+```{r}
+pairs(wine[,2:12], upper.panel = NULL)
+
+# Drawing upper corner
+# pairs(wine[,2:12], lower.panel = NULL)
+```
+
+### Including Coefficients
+
+```{r warning = FALSE}
+panel.cor <- function(x, y, digits=2, prefix="", cex.cor, ...) {
+  usr <- par("usr")
+  on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  r <- abs(cor(x, y, use="complete.obs"))
+  txt <- format(c(r, 0.123456789), digits=digits)[1]
+  txt <- paste(prefix, txt, sep="")
+  if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+  text(0.5, 0.5, txt, cex = cex.cor * (1 + r) / 2)
+}
+
+pairs(wine[,2:12], 
+      upper.panel = panel.cor)
+```
+
+### Using `corrplot`
+
+```{r}
+# building correlation matrix
+wine.cor <- cor(wine[, 1:11])
+
+corrplot.mixed(wine.cor, 
+               #lower corner
+               lower = "ellipse", 
+               #upper corner
+               upper = "number",
+               tl.pos = "lt",
+               diag = "l",
+               tl.col = "blue")
+```
+
+### Find highly correlated group
+
+```{r}
+corrplot(wine.cor, 
+         method = "ellipse", 
+         tl.pos = "lt",
+         tl.col = "black",
+         order="hclust",
+         hclust.method = "ward.D",
+         addrect = 3)
+```
+### With Significant Test
+
+```{r}
+# sig. test
+wine.sig = cor.mtest(wine.cor, conf.level= .95)
+
+#
+corrplot(wine.cor,
+         method = "number",
+         type = "lower",
+         diag = FALSE,
+         tl.col = "black",
+         tl.srt = 45,
+         p.mat = wine.sig$p,
+         sig.level = .05)
+```
+
 

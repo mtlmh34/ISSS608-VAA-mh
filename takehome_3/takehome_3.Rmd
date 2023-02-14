@@ -392,8 +392,28 @@ hmp <- plot_ly(
 hmp
 ```
 
-**Consideration**: We would like to compute the correlation between each of the numerical variable to discover how much they are correlated to each other.
+**Consideration**: Heatmap is used to display the median price in each of the storey range for each town. A blue-read color palette is used to distingush the more expensive ones that the rest.
 
-**Analytical insights**: By plotting the correlation matrix between *resale_price*, *floor_area_sqm*, *remaining_lease_years* and *psqm*, we find that the correlations between unit price of resale flat and total price, floor area and remaining lease period are not statistically significant.
+**Analytical insights**:
 
-# 3. Insights and Conclusions
+-   For the areas that are closer to the central, it is an obvious trend that the median price increases as the storey range goes higher.
+
+-   Interestingly, this does not apply to the suburban area, as the change in color is not obvious with the increase in level.
+
+# 3. Conclusions and Takeaways
+
+Conclusions:
+
+-   From the visualizations, we are able to observe how the real estate market changes in the past several years, including sales volume and price, due to pandemic and its corresponding policy change.
+
+-   Furthermore, we can conclude that some of the most important factor that affect the resale price are location and flat model. For storey of flats, the "higher floor, higher price" relationship only applies to the heartland areas in the City, and is less obvious in the suburban areas.
+
+-   There are few areas that have majority of medium-priced (33%-66% percentile in resale price) flats in the city; most of the areas are dominated by either affordable or premium flats.
+
+-   Factors such as remaining lease years and floor area does not siginificantly affect the unit price of the flat.
+
+Some of my key takeaways:
+
+-   There is no one visualization method that is always better than others. We need to adjust the type of visualization based on the characteristics of the data, the message to be conveyed, and even the target audience.
+
+-   \"Occam's razor\" applies. Compared to graphs that are filled with a lot of information, we only need to display the important ones for clearer illustration of the insights.

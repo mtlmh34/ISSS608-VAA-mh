@@ -360,6 +360,7 @@ corrplot(resale_cor,
 
 **Analytical insights**: By plotting the correlation matrix between *resale_price*, *floor_area_sqm*, *remaining_lease_years* and *psqm*, we find that the correlations between unit price of resale flat and total price, floor area and remaining lease period are not statistically significant.
 
+
 ## 2.5. Heatmap: Between Storey and Price
 
 ```{r}
@@ -392,6 +393,7 @@ hmp <- plot_ly(
 hmp
 ```
 
+
 **Consideration**: Heatmap is used to display the median price in each of the storey range for each town. A blue-read color palette is used to distingush the more expensive ones that the rest.
 
 **Analytical insights**:
@@ -400,9 +402,10 @@ hmp
 
 -   Interestingly, this does not apply to the suburban area, as the change in color is not obvious with the increase in level.
 
+
 # 3. Conclusions and Takeaways
 
-Conclusions:
+## Conclusions:
 
 -   From the visualizations, we are able to observe how the real estate market changes in the past several years, including sales volume and price, due to pandemic and its corresponding policy change.
 
@@ -412,7 +415,7 @@ Conclusions:
 
 -   Factors such as remaining lease years and floor area does not siginificantly affect the unit price of the flat.
 
-Some of my key takeaways:
+## Some of my key takeaways:
 
 -   There is no one visualization method that is always better than others. We need to adjust the type of visualization based on the characteristics of the data, the message to be conveyed, and even the target audience.
 

@@ -15,10 +15,12 @@ execute:
   warning: false
 preview: 
 output:
-  distill::distill_article:
+  html_document:
     self_contained: false
     toc: true
+    toc_float: true
     toc_depth: 3
+    code_folding: hide
 ---
 
 # 1. Overview
@@ -32,7 +34,9 @@ The dataset used in take-home exercise 3 is downloaded from [Data.gov.sg](https:
 Using `pacman` package to load visualization packages.
 
 ```{r}
-pacman::p_load(tidyverse, DT, ggstatsplot, ggiraph, gganimate, gifski, ggthemes)
+pacman::p_load(dplyr, tidyverse, DT, ggplot2, ggiraph, 
+               ggstatsplot, patchwork, plotly, gganimate, 
+               ggthemes, corrplot, heatmaply)
 ```
 
 ## 1.2. Loading Data
@@ -43,22 +47,24 @@ Previewing the head rows of the data to observe the columns.
 resale_data <- read_csv("../Data/resale-flat-prices-based-on-registration-date-from-jan-2017-onwards.csv")
 
 options(DT.options = list(pageLength = 5))
-DT::datatable(head(resale_data,20),class ="cell-border stripe",style = "bootstrap") #%>% formatStyle(names(resale_data),backgroundColor = 'grey')
+DT::datatable(head(resale_data,20),class ="cell-border stripe",style = "bootstrap") 
+#%>% formatStyle(names(resale_data),backgroundColor = 'grey')
 ```
 
 ## 1.3. Data Pre-Processing
 
-For this study, we are interested in the **3-ROOM, 4-ROOM** and **5-ROOM** flats that are sold during the year of **2022**.
+For this study, we are interested in the **3-ROOM, 4-ROOM** and **5-ROOM** flats that are sold during the year of **2022** (except using data of 2017-2023 for trend analysis).
 
 ```{r}
 unique(resale_data$flat_type)
 ```
 
+First, we transform the data by extracting year and month from column *month*, and calculating the remaining lease years and price per square meter, using the `tidyverse` library.
+
 ```{r}
-resale_2022 <- resale_data %>% 
-  # filter rows containing substring 2022 in month column,
+resale_345 <- resale_data %>% 
   # and 3/4/5 ROOM in flat_type column
-  filter(str_detect(month, '2022'), str_detect(flat_type, '3 ROOM|4 ROOM|5 ROOM')) %>%
+  filter(str_detect(flat_type, '3 ROOM|4 ROOM|5 ROOM')) %>%
   # extract the year of sale
   mutate(sale_year=as.integer(str_sub(month, start = 1L, end = 4L))) %>%
   # extract the month of sale
@@ -68,8 +74,326 @@ resale_2022 <- resale_data %>%
   # calculate the price/sqm
   mutate(psqm=round(resale_price / floor_area_sqm, 2))
 
-DT::datatable(resale_2022,class ="cell-border stripe",style = "bootstrap") %>%
+DT::datatable(head(resale_345,100),class ="cell-border stripe",style = "bootstrap") %>%
 DT::formatStyle(columns = colnames(.), fontSize = '20%')
 ```
 
+# 2. Data Analysis and Visualizations
 
+## 2.1. Timely Trend (From 2017 - 2023)
+
+### 2.1.1. Timely Trend of Price Per Sqm. by Flat Type
+
+```{r}
+grp2 <- resale_345 %>%
+  group_by(sale_year, flat_type) %>%
+  summarise(no_sales=n(), avg_psqm=round(mean(psqm),2))
+
+
+tt <- c(paste("Year:", grp2$sale_year, "<br>Price/SQM: $", grp2$avg_psqm))
+
+fig2 <-grp2 %>%
+  ggplot(aes(x = sale_year, y = avg_psqm,colour = flat_type)) +
+  geom_smooth(alpha = 0.1,se=FALSE) +
+  geom_point_interactive(aes(tooltip = tt),size = 5) +
+  theme_excel_new()+
+  scale_x_continuous(breaks = seq(2017,2023,by = 1),limits = c(2017,2023)) +
+  scale_y_continuous(breaks = seq(0,6500,by = 1000),limits = c(4000,6500)) +
+  labs(title = "Avg. Resale Unit Price, 2017 - 2023", x = 'Year', y = 'Avg. Resale Price') +
+  scale_color_manual(values = c("#3d7dcc", "#f57ee0", "#02e302")) 
+
+girafe(
+  ggobj = fig2, width_svg = 12
+)
+```
+
+**Consideration**: lineplot is chosen for clearer observation of the change in average unit price. For more obvious illustration of the trend, the data was grouped by year instead of month. When user hover on the data points, the corresponding unit price of the specific flat type in that year will be displayed.
+
+**Analytical insights**: from the visualization, we found out:
+
+-   Before 2020, the unit resale price in Singapore is fairly stable, fluctuating around SGD 4,500.
+-   After 2020, the average unit price increased rapidly year by year; this may be affected by the short in labour force due to COVID-19 and the increased demand.
+
+### 2.1.2. Timely Trend of No. of Sales
+
+```{r}
+# Group by month and flt type
+grp <- resale_345 %>%
+  group_by(month, flat_type) %>%
+  summarise(no_sales=n(), avg_psqm=round(mean(psqm),2))
+
+# Minimal point of No. of sales
+m <- grp[which.min(grp$no_sales), ]
+a <- list(
+  x = m$month,
+  y = m$no_sales,
+  text = 'Circuit Breaker Period',
+  xref = "x",
+  yref = "y",
+  showarrow = TRUE,
+  arrowhead = 7,
+  ax = -100,
+  ay = -30
+)
+
+# Use Plotly to draw line chart by flat type
+fig <- grp %>%
+  ungroup() %>%
+  plot_ly(x = ~month, 
+          y = ~no_sales, 
+          color= ~flat_type,
+          text = ~paste("month:", month, "<br>Sales:", no_sales),
+          type = 'scatter', 
+          mode = 'lines') %>%
+  layout(title = list(text = 'Total No. of Sales of 3/4/5 Room Flats, 2017 - 2022',
+                      pad = list(b = 90, l = 130, r = 50 )
+                      ),
+         xaxis = list(title = 'MONTH',
+                      zeroline = TRUE),
+         yaxis = list(title = 'NO. OF SALES')
+         )
+# Add min point annotation
+fig <- fig %>% add_markers()
+fig <- fig %>% layout(annotations = a)
+
+fig
+```
+
+**Consideration**: lineplot is chosen for clearer observation of the sales volume fluctuation. Different room types are represented by different colors of lines in the chart. As for interactability, when user hover on a particular data point, year and month and the respective sales volume will be displayed.
+
+**Analytical insights**: from the visualization, we found out:
+
+-   4-ROOM flats are the most popular flat type across the whole period, whereas the sales volume of 5-ROOM flats has been slightly higher than that of 3-ROOM flats most of the time.
+-   There is a noticable drop in sales volume during April & May 2020; this was probably due to the circuit breaker policy during COVID-19 spread in Singapore.
+
+### 2.1.3. Timely Trend of Price Per Sqm. by Area
+
+```{r}
+means=resale_345 %>% group_by(town) %>% summarise(mpsqm=mean(psqm))
+means
+```
+
+```{r fig.width=10,fig.height=10}
+
+# Calculate the mean psqm for each town and year combination
+means <- resale_345 %>% 
+  group_by(town, sale_year) %>% 
+  summarise(mpsqm = mean(psqm))
+
+p <- ggplot(resale_345, aes(x = psqm, color = factor(town), fill = factor(town))) + 
+  geom_density(aes(frame=resale_345$sale_year)) +
+  facet_grid(town~., scales = "free", space = "free") +
+  geom_vline(data = means, aes(xintercept = mpsqm, frame=sale_year), alpha=0.4) +
+  theme_bw() +
+  theme(
+    legend.position = "none",
+    plot.margin = margin(1, 3, 0, 0, "cm"),
+    panel.grid = element_blank(),
+    panel.background = element_blank(),
+    axis.text = element_blank(),
+    strip.text.y = element_text(angle = 0,margin = margin(2,2,2,2, "cm")),
+    panel.spacing = unit(0, "cm", data = NULL)
+  )+xlab('Price Per Sqm. (SGD)')
+
+fig3 <- ggplotly(p) %>% layout(title="Price Per Sqm. Distribution by Town") 
+
+fig3 <- fig3 %>% 
+  animation_opts(
+  1200, easing = "linear", redraw = FALSE,
+  ) %>%
+  animation_slider(
+    currentvalue = list(prefix = "YEAR ", font = list(color="black"))
+  )
+
+fig3
+```
+
+**Consideration**: density plot of unit price distribution is chosen for comparision between different towns, and a vertical line indicates the median of the unit price in that area. User can also drag the slider bar mannually or press the "Play" button to see how the unit prices in different areas change over the years.
+
+**Analytical insights**: here are the findings from the visualization:
+
+-   We can observe that towns such as Bukit Timah, Central Area and Queenstown have more left-skewed distributions, indicating these are more expensive areas;
+-   Areas like Woodlands, Yishun and Choa Chu Kang are more affordable ones.
+-   Moreover, using plotly, we can see how the medians "run" to the right-hand side since 2020 onwards!
+
+## 2.2. Statistical Visualization (In 2022)
+
+### 2.2.1. One-way ANOVA Test on Median of Price Per Sqm. (Non-parametric)
+
+```{r}
+#filter only 2022 data
+resale_2022 <- resale_345 %>%filter(sale_year==2022)
+
+anova <- ggbetweenstats(
+  data = resale_2022,
+  x = flat_type,
+  y = psqm,
+  type = "np",                   #non-parametric test
+  mean.ci = TRUE,
+  pairwise.comparisons = TRUE,
+  pairwise.display = "s",
+  p.adjust.method = "hom"
+) + xlab('Flat Type') + ylab('Price Per Sqm. (SGD)')
+
+anova
+```
+
+**Consideration**: violin plots are used to show the unit price distribution of different flat type; by the p-values on top of the graphs, we can see which pair of samples have a rejected null hypothesis in the ANOVA test.
+
+**Analytical insights**: here are the findings from the visualization:
+
+-   we can conclude that 5-ROOM flats has a statistically different median in unit price compare to 3 ROOM and 4 ROOM flats;
+
+-   we cannot conclude any statistical difference between median in unit price of 3-ROOM and 4-ROOM flats.
+
+### 2.2.2. Boxplots of Resale Price by Flat Model
+
+```{r}
+
+
+pp <- ggplot(resale_2022, aes(x=reorder(flat_model,resale_price,fun=median), y=resale_price, fill=flat_model))+
+  geom_boxplot()+
+  xlab('Flat Model Type')+
+  ylab('Price in SGD')+
+  theme(
+    legend.position = "none")
+fig4 <- ggplotly(pp) %>% 
+  layout(
+    title="By Flat Model",
+    xaxis=list(tickangle = 45)
+         )
+fig4
+```
+
+**Consideration**: box plots are used to show the total resale price distribution of different flat model. The models are sorted by their median so that it is easier to observe which ones are more premium flat models.
+
+**Analytical insights**: here are the findings from the visualization:
+
+-   Type S1, S2 and Premium Apartment Loft are generally more expensive;
+
+-   New Generation, Simplified and A2 Model are more affordable.
+
+## 2.3. Ternary Diagram: Percentage of "Affordable", "Medium", "Premium" Flats by Area
+
+```{r}
+resale_2022$tri_tile <- ntile(resale_2022$psqm, 3)
+resale_2022_perc_by_town <- resale_2022 %>%
+  group_by(town, tri_tile) %>%
+  summarise(No_sales=n()) %>%
+  mutate(freq = round(No_sales / sum(No_sales),2)) %>%
+  select(town, tri_tile, freq) %>%
+  pivot_wider(names_from = tri_tile, values_from = freq)
+colnames(resale_2022_perc_by_town) <- c("town" ,"Affordable", "Medium","Premium")
+resale_2022_perc_by_town <- resale_2022_perc_by_town %>% mutate(Affordable=replace_na(Affordable,0))
+resale_2022_perc_by_town
+```
+
+```{r}
+label <- function(txt) {
+  list(
+    text = txt, 
+    x = 0.1, y = 1,
+    ax = 0, ay = 0,
+    xref = "paper", yref = "paper", 
+    align = "center",
+    font = list(family = "serif", size = 15, color = "black"),
+    bordercolor = "black", borderwidth = 2
+  )
+}
+
+axis <- function(txt) {
+  list(
+    title = txt, tickformat = ".0%", tickfont = list(size = 10)
+  )
+}
+
+ternaryAxes <- list(
+  aaxis = axis("Affordable"), 
+  baxis = axis("Medium"), 
+  caxis = axis("Premium")
+)
+
+plot_ly(
+  resale_2022_perc_by_town,
+  # a b c are the 3 variables, text is the tooltip (town)
+  a = ~Affordable, 
+  b = ~Medium, 
+  c = ~Premium, 
+  text = ~town,
+  color = I('#DB7365'), 
+  type = "scatterternary",
+  marker = list(size = 8)
+) %>%
+  layout(
+    annotations = label("Ternary Diagram: Distribution of Unit <br> in Different Price Range by Town"), 
+    ternary = ternaryAxes,
+    margin = margin(.5,.5,.5,.5, "cm")
+  )
+```
+
+**Consideration**: We divide all HDB flats in to 3-tile based on their resale price: "Affordable", "Medium" and "Premium", and we would like to see how each of the portion constitute to the total number of units in diferent towns. When the a data point is hovered upon, the town, and percentage of units in each price range will be displayed.
+
+**Analytical insights**: here are the findings from the visualization:
+
+-   We can found the data points tend to cluster around the "Affordable" angle and the "Premium" angle, which means that few towns are dominated by flats in medium price range.
+
+-   Close to the "Premium" angle are areas that are located near the downtown or central;
+
+-   Close to the "Affordable" angle are areas that are closer to the suburb.
+
+## 2.4. Correlation Matrix: Factors that Affect Price
+
+```{r}
+resale_cor <- cor(resale_2022[, c('resale_price', 'psqm', 'floor_area_sqm', 'remaining_lease_years')])
+resale_sig <-  cor.mtest(resale_cor, conf.level= .95)
+corrplot(resale_cor,
+         method = "number",
+         type = "lower",
+         diag = TRUE,
+         tl.col = "black",
+         tl.srt = 45,
+         p.mat = resale_sig$p,
+         sig.level = .05)
+```
+
+**Consideration**: We would like to compute the correlation between each of the numerical variable to discover how much they are correlated to each other.
+
+**Analytical insights**: By plotting the correlation matrix between *resale_price*, *floor_area_sqm*, *remaining_lease_years* and *psqm*, we find that the correlations between unit price of resale flat and total price, floor area and remaining lease period are not statistically significant.
+
+## 2.5. Heatmap: Between Storey and Price
+
+```{r}
+resale_storey <- resale_2022 %>%
+  group_by(town, storey_range) %>%
+  summarise(med_price=median(resale_price)) %>%
+  ungroup() %>%
+  mutate(town = reorder(town, med_price))
+
+# Specify the number of colors in the color ramp
+custom_colors <- colorRampPalette(c("blue","red"))(n = 20)
+
+hmp <- plot_ly(
+  data = resale_storey, 
+  x = ~town ,
+  y = ~storey_range, 
+  z = ~med_price, 
+  type = "heatmap",
+  colorscale = list(
+    reverse = TRUE, 
+    cmin = min(resale_storey$med_price), 
+    cmax = max(resale_storey$med_price), 
+    colors = custom_colors)
+) %>% layout(
+  xaxis = list(title = "Town"),
+  yaxis = list(title = "Storey Range"),
+  title = "Resale Prices by Town and Storey Range"
+)
+
+hmp
+```
+
+**Consideration**: We would like to compute the correlation between each of the numerical variable to discover how much they are correlated to each other.
+
+**Analytical insights**: By plotting the correlation matrix between *resale_price*, *floor_area_sqm*, *remaining_lease_years* and *psqm*, we find that the correlations between unit price of resale flat and total price, floor area and remaining lease period are not statistically significant.
+
+# 3. Insights and Conclusions

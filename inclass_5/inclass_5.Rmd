@@ -26,10 +26,10 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 ## Ternary Diagram
 
 ### Import libraries and data
+
 ```{r}
 pacman::p_load(ggtern, plotly, tidyverse)
 
@@ -37,7 +37,9 @@ data <- read_csv('/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/respopagsex2000to
 
 data
 ```
+
 ### Data wranggling
+
 ```{r}
 agpop_mutated <- data %>%
   mutate(`Year` = as.character(Year))%>%
@@ -50,10 +52,13 @@ agpop_mutated <- data %>%
   filter(TOTAL > 0)
 agpop_mutated
 ```
+
 ```{r}
 ggtern(data=agpop_mutated,aes(x=YOUNG,y=ACTIVE, z=OLD)) + geom_point()
 ```
+
 ### Added Theme
+
 ```{r}
 ggtern(data=agpop_mutated, aes(x=YOUNG,y=ACTIVE, z=OLD)) +
   geom_point() +
@@ -62,6 +67,7 @@ ggtern(data=agpop_mutated, aes(x=YOUNG,y=ACTIVE, z=OLD)) +
 ```
 
 ### Interactive
+
 ```{r}
 label <- function(txt) {
   list(
@@ -102,9 +108,11 @@ plot_ly(
     ternary = ternaryAxes
   )
 ```
+
 ## Correlation Diagram
 
 ### Import libraries and data
+
 ```{r}
 pacman::p_load(corrplot, tidyverse, ggstatsplot, GGally)
 wine <- read_csv("/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/wine_quality.csv")
@@ -112,9 +120,11 @@ wine
 ```
 
 ### Correlation Matrix
+
 ```{r}
 pairs(wine[,2:12])
 ```
+
 ### Drawing the lower corner
 
 ```{r}
@@ -169,6 +179,7 @@ corrplot(wine.cor,
          hclust.method = "ward.D",
          addrect = 3)
 ```
+
 ### With Significant Test
 
 ```{r}
@@ -185,5 +196,3 @@ corrplot(wine.cor,
          p.mat = wine.sig$p,
          sig.level = .05)
 ```
-
-

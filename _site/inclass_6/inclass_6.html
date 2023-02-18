@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Liang Minghao">
-<meta name="dcterms.date" content="2023-01-14">
-<meta name="description" content="Visualization of Sales and Profit Summary of a store using Tableau Desktop.">
+<meta name="dcterms.date" content="2023-02-18">
+<meta name="description" content="Various types of visualization of time-series data using Tableau Desktop.">
 
-<title>ISSS608-VAA-mh - In-Class Exercise 1</title>
+<title>ISSS608-VAA-mh - In-Class Exercise 6</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -181,7 +181,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">1. Overview</a></li>
+  <li><a href="#line-graph-and-cycle-graph" id="toc-line-graph-and-cycle-graph" class="nav-link active" data-scroll-target="#line-graph-and-cycle-graph">1. Line Graph and Cycle Graph</a>
+  <ul class="collapse">
+  <li><a href="#steps-for-cycle-graph" id="toc-steps-for-cycle-graph" class="nav-link" data-scroll-target="#steps-for-cycle-graph">1.1. Steps for cycle graph</a></li>
+  </ul></li>
+  <li><a href="#slope-graph" id="toc-slope-graph" class="nav-link" data-scroll-target="#slope-graph">2. Slope Graph</a>
+  <ul class="collapse">
+  <li><a href="#steps-for-slope-graph" id="toc-steps-for-slope-graph" class="nav-link" data-scroll-target="#steps-for-slope-graph">1.1. Steps for slope graph</a></li>
+  </ul></li>
+  <li><a href="#calendar-heatmap" id="toc-calendar-heatmap" class="nav-link" data-scroll-target="#calendar-heatmap">3. Calendar Heatmap</a></li>
+  <li><a href="#steps-for-calendar-heatmap" id="toc-steps-for-calendar-heatmap" class="nav-link" data-scroll-target="#steps-for-calendar-heatmap">3.1 Steps for calendar heatmap</a></li>
+  <li><a href="#bubble-plot-to-show-trend-over-time" id="toc-bubble-plot-to-show-trend-over-time" class="nav-link" data-scroll-target="#bubble-plot-to-show-trend-over-time">4. Bubble Plot to show trend over time</a>
+  <ul class="collapse">
+  <li><a href="#steps-for-bubble-plot-with-animation" id="toc-steps-for-bubble-plot-with-animation" class="nav-link" data-scroll-target="#steps-for-bubble-plot-with-animation">4.1 Steps for bubble plot with animation</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -190,7 +203,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">In-Class Exercise 1</h1>
+<h1 class="title">In-Class Exercise 6</h1>
   <div class="quarto-categories">
     <div class="quarto-category">in-class exercise</div>
   </div>
@@ -198,7 +211,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    <p>Visualization of Sales and Profit Summary of a store using Tableau Desktop.</p>
+    <p>Various types of visualization of time-series data using Tableau Desktop.</p>
   </div>
 </div>
 
@@ -222,7 +235,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 14, 2023</p>
+      <p class="date">February 18, 2023</p>
     </div>
   </div>
   
@@ -232,12 +245,84 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="overview" class="level1">
-<h1>1. Overview</h1>
-<p>The outcomes of the exercise are shown as a dashboard on <a href="https://public.tableau.com/app/profile/minghao.liang/viz/inclass-exercise-1/Dashboard1">Tableau Public</a>.</p>
-<p><img src="inclass_1_prev.jpg" class="img-fluid" style="width:60.0%"></p>
+<section id="line-graph-and-cycle-graph" class="level1">
+<h1>1. Line Graph and Cycle Graph</h1>
+<p>The first visualization displays the monthly tourist arrivals across years; the second visualization displays the cycle graph which can show the peak seasons in a year.</p>
+<p><a href="https://public.tableau.com/app/profile/minghao.liang/viz/inclass-6-CycleGraph/Dashboard1">Tableau Public Link</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="inclass_6_1.jpg" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+<section id="steps-for-cycle-graph" class="level2">
+<h2 class="anchored" data-anchor-id="steps-for-cycle-graph">1.1. Steps for cycle graph</h2>
+<ul>
+<li>Columns: MONTH(Month-Year) | YEAR (Month-Year)</li>
+<li>Rows: SUM(Arrivals)</li>
+<li>Filters: Month-Year (<em>range of dates</em>) | Country <em>(radio button)</em> | Year (<em>change to numerical</em>)</li>
+<li>Average line: y-xis -&gt; Add reference lines</li>
+</ul>
+</section>
+</section>
+<section id="slope-graph" class="level1">
+<h1>2. Slope Graph</h1>
+<p>The visualization shows the change in rice yield of multiple country from Year 1961 to Year 1980.</p>
+<p><a href="https://public.tableau.com/app/profile/minghao.liang/viz/inclass-6-slopeGraph/Sheet1">Tableau Public Link</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="inclass_6_2.png" class="img-fluid figure-img" style="width:57.0%"></p>
+</figure>
+</div>
+<section id="steps-for-slope-graph" class="level2">
+<h2 class="anchored" data-anchor-id="steps-for-slope-graph">1.1. Steps for slope graph</h2>
+<ul>
+<li>Columns: Year</li>
+<li>Rows: Sum(Yield)</li>
+<li>Label and Detail: Country</li>
+<li>Filter: Year (<em>convert to discrete; select only 1961 and 1980</em>)</li>
+</ul>
+</section>
+</section>
+<section id="calendar-heatmap" class="level1">
+<h1>3. Calendar Heatmap</h1>
+<p>The calendar heatmap shows the frequency of network intrusion across different weeks and days of week.</p>
+<p><a href="https://public.tableau.com/app/profile/minghao.liang/viz/inclass-6-calendarHeatmap/Sheet1">Tableau Public Link</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="inclass_6_3.png" class="img-fluid figure-img" style="width:89.0%"></p>
+</figure>
+</div>
+</section>
+<section id="steps-for-calendar-heatmap" class="level1">
+<h1>3.1 Steps for calendar heatmap</h1>
+<ul>
+<li>Columns: MONTH(Timestamp) | WEEK (Timestamp)</li>
+<li>Rows: WEEKDAY(Timestamp)</li>
+<li>Color: CNT (eventlog.csv)</li>
+</ul>
+</section>
+<section id="bubble-plot-to-show-trend-over-time" class="level1">
+<h1>4. Bubble Plot to show trend over time</h1>
+<p>The bubble plot shows the young and old population ratio forecasting of different countries.</p>
+<p><a href="https://public.tableau.com/app/profile/minghao.liang/viz/inclass-6-bubblePlotOverTime/Sheet1">Tableau Public Link</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="inclass_6_4.jpg" class="img-fluid figure-img" style="width:69.0%"></p>
+</figure>
+</div>
+<section id="steps-for-bubble-plot-with-animation" class="level2">
+<h2 class="anchored" data-anchor-id="steps-for-bubble-plot-with-animation">4.1 Steps for bubble plot with animation</h2>
+<ul>
+<li><p>Columns: SUM(Old)</p></li>
+<li><p>Rows: SUM(Young)</p></li>
+<li><p>Color: Continent</p></li>
+<li><p>Size: SUM(Population)</p></li>
+<li><p>Detail, Label: Country</p></li>
+<li><p><strong>Pages: YEAR(Year)</strong></p></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

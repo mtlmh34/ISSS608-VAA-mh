@@ -264,5 +264,26 @@
     "title": "Take-home Exercise 3",
     "section": "Some of my key takeaways:",
     "text": "Some of my key takeaways:\n\nThere is no one visualization method that is always better than others. We need to adjust the type of visualization based on the characteristics of the data, the message to be conveyed, and even the target audience.\n\"Occam’s razor\" applies. Compared to graphs that are filled with a lot of information, we only need to display the important ones for clearer illustration of the insights."
+  },
+  {
+    "objectID": "inclass_6/inclass_6.html",
+    "href": "inclass_6/inclass_6.html",
+    "title": "In-Class Exercise 6",
+    "section": "",
+    "text": "The first visualization displays the monthly tourist arrivals across years; the second visualization displays the cycle graph which can show the peak seasons in a year.\nTableau Public Link\n\n\n\n\n\n\n\n\nColumns: MONTH(Month-Year) | YEAR (Month-Year)\nRows: SUM(Arrivals)\nFilters: Month-Year (range of dates) | Country (radio button) | Year (change to numerical)\nAverage line: y-xis -> Add reference lines"
+  },
+  {
+    "objectID": "inclass_6/inclass_6.html#steps-for-slope-graph",
+    "href": "inclass_6/inclass_6.html#steps-for-slope-graph",
+    "title": "In-Class Exercise 6",
+    "section": "1.1. Steps for slope graph",
+    "text": "1.1. Steps for slope graph\n\nColumns: Year\nRows: Sum(Yield)\nLabel and Detail: Country\nFilter: Year (convert to discrete; select only 1961 and 1980)"
+  },
+  {
+    "objectID": "inclass_6/inclass_6.html#steps-for-bubble-plot-with-animation",
+    "href": "inclass_6/inclass_6.html#steps-for-bubble-plot-with-animation",
+    "title": "In-Class Exercise 6",
+    "section": "4.1 Steps for bubble plot with animation",
+    "text": "4.1 Steps for bubble plot with animation\n\nColumns: SUM(Old)\nRows: SUM(Young)\nColor: Continent\nSize: SUM(Population)\nDetail, Label: Country\nPages: YEAR(Year)"
   }
 ]

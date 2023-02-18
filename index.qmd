@@ -14,7 +14,9 @@ about:
 ---
 
 ::: {#hero-heading}
-This website shows the collection of my visual analytics exercises and projects. Hope you enjoy my works!
+This website shows the collection of my visual analytics exercises and projects.
+
+Hope you enjoy my works!
 
 ## Education
 

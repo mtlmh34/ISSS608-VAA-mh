@@ -1,5 +1,5 @@
 ---
-title: "Liang Minghao's Visual Analytics Portfolio"
+title: "Home"
 image: index_photo.jpg
 about:
   template: solana

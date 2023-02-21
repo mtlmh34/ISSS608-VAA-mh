@@ -23,4 +23,56 @@ output:
     code_folding: hide
 ---
 
+# 1. Overview
+
+
+
+
+# 2. Data Processing
+
+## 1.1. Loading Libraries
+
+```{r}
+pacman::p_load(dplyr, tidyverse, ggplot2, lubridate, readxl)
+```
+
+## 1.2. Loading Data
+
+```{r}
+import <- read_excel('/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/outputFile.xlsx', sheet='T1',
+                     skip = 9, n_max = 120)
+export <- read_excel('/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/outputFile.xlsx', sheet='T2',
+                     skip = 9, n_max = 120)
+
+```
+
+## 1.3. Data Wrangling
+
+```{r}
+# Process import data
+import_by_country <- import %>%
+  filter(row_number()>7) %>%
+  rename('Country' = 'Data Series') %>%
+  select('Country'|starts_with('2022')|starts_with('2021')|starts_with('2020')) %>%
+  pivot_longer(!Country, names_to = 'Month', values_to = 'Import') %>%
+  mutate(Country = str_replace(Country, "Total Merchandise Exports (Thousand Dollars)", "Total (Thousand Dollars)"))
+
+# Process export data
+export_by_country <- export %>%
+  filter(row_number()>7) %>%
+  rename('Country' = 'Data Series') %>%
+  select('Country'|starts_with('2022')|starts_with('2021')|starts_with('2020')) %>%
+  pivot_longer(!Country, names_to = 'Month', values_to = 'Export')
+
+# Merge two dataset, sort by country and month ascending
+import_export_by_country <- left_join(import_by_country,export_by_country,
+                                      by=join_by('Country', 'Month')) %>%
+  mutate(Month=ym(Month)) %>%
+  arrange(Country,Month)
+  
+```
+
+```{r}
+import_export_by_country
+```
 

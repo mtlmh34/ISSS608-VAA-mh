@@ -1,0 +1,26 @@
+---
+title: "Take-home Exercise 4"
+categories: take-home exercise
+description: |
+  This take home exercise aims to uncover the impact of COVID-19 as well as the global economic and political dynamic in 2022 on Singapore bi-lateral trade by using various analytical visualisation techniques.
+author:
+  - name: Liang Minghao
+    affiliation: SMU, MITB
+    affiliation_url: https://scis.smu.edu.sg/master-it-business
+date: "Feb 22 2023"
+date modified: "`r Sys.Date()`"
+execute: 
+  echo: true
+  eval: true
+  warning: false
+preview: 
+output:
+  html_document:
+    self_contained: false
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    code_folding: hide
+---
+
+

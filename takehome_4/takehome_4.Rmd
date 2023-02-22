@@ -25,15 +25,16 @@ output:
 
 # 1. Overview
 
-
-
+The COVID-19 pandemic has significantly impacted the global trade and economy since its outbreak in Year 2020. In this study, we will analyse the import and export volume between **Singapore** and **other ASEAN countries, US** as well as **China**.
 
 # 2. Data Processing
+
+The data used for this take-home exercise is extracted from [SingStat](https://www.singstat.gov.sg/find-data/search-by-theme/trade-and-investment/merchandise-trade/latest-data), in excel spreadsheet format.
 
 ## 1.1. Loading Libraries
 
 ```{r}
-pacman::p_load(dplyr, tidyverse, ggplot2, lubridate, readxl)
+pacman::p_load(dplyr, tidyverse, ggplot2, lubridate, readxl, knitr,CGPfunctions)
 ```
 
 ## 1.2. Loading Data
@@ -43,36 +44,73 @@ import <- read_excel('/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/outputFile.xl
                      skip = 9, n_max = 120)
 export <- read_excel('/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/outputFile.xlsx', sheet='T2',
                      skip = 9, n_max = 120)
-
 ```
 
 ## 1.3. Data Wrangling
 
+In data wrangling, the following tasks are performed:
+ - focus on only trades with ASEAN countries, US and China
+ - focus on only data in 2020-2022
+ - transpose the data to long table
+ - join import and export data
+ 
 ```{r}
-# Process import data
-import_by_country <- import %>%
-  filter(row_number()>7) %>%
-  rename('Country' = 'Data Series') %>%
-  select('Country'|starts_with('2022')|starts_with('2021')|starts_with('2020')) %>%
-  pivot_longer(!Country, names_to = 'Month', values_to = 'Import') %>%
-  mutate(Country = str_replace(Country, "Total Merchandise Exports (Thousand Dollars)", "Total (Thousand Dollars)"))
+trade_countries <- c("Brunei Darussalam","Indonesia","Malaysia","Philippines",                        
+                     "Thailand","Myanmar","Cambodia","Laos People's Democratic Republic",  
+                     "Vietnam, Socialist Republic Of", "Mainland China", "United States")
 
-# Process export data
-export_by_country <- export %>%
-  filter(row_number()>7) %>%
-  rename('Country' = 'Data Series') %>%
-  select('Country'|starts_with('2022')|starts_with('2021')|starts_with('2020')) %>%
-  pivot_longer(!Country, names_to = 'Month', values_to = 'Export')
+processing <- function(df){
+  df$'Data Series' <- str_replace(df$'Data Series', ' \\(Thousand Dollars\\)', '')
+  df <- df %>%
+    rename('Country' = 'Data Series') %>%
+    filter(Country %in% trade_countries) %>%
+    select('Country'|starts_with('2022')|starts_with('2021')|starts_with('2020')) %>%
+    pivot_longer(!Country, names_to = 'Month', values_to = 'Thousands')
+
+  return(df)
+}
+
+import_by_country <- processing(import)
+export_by_country <- processing(export)
 
 # Merge two dataset, sort by country and month ascending
 import_export_by_country <- left_join(import_by_country,export_by_country,
                                       by=join_by('Country', 'Month')) %>%
-  mutate(Month=ym(Month)) %>%
-  arrange(Country,Month)
-  
+  mutate(Month=substr(ym(Month),1,7)) %>%
+  arrange(Country,Month) %>%
+  rename('Import' = 'Thousands.x', 'Export' = 'Thousands.y')
+
+```
+ 
+The dataframe after pre-processing is as follows:
+```{r}
+kable(head(import_export_by_country), 'pipe')
 ```
 
+
 ```{r}
-import_export_by_country
+import_export_by_country_longer <- pivot_longer(import_export_by_country,cols=ends_with('port'), names_to = 'Type', values_to = 'Thousands')
+import_export_by_country_longer
 ```
+
+
+```{r fig.width=16, fig.height=12}
+import_export_by_country_longer %>% 
+  mutate(Month = factor(Month)) %>%
+  filter(grepl('01',Month)|grepl('06',Month)|Month=='2022-12') %>%
+  newggslopegraph(Month, Thousands, Country,
+                Title = "Import and Export of ASEAN, US and CN (in $'000)",
+                SubTitle = "2020 - 2022, semi-annual trend",
+                Caption = "Prepared by: Liang Minghao") +
+  facet_wrap(~Type)
+
+```
+
+
+```{r}
+#horizon graph
+```
+
+
+
 

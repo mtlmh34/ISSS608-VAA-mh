@@ -34,7 +34,7 @@ The data used for this take-home exercise is extracted from [SingStat](https://w
 ## 2.1. Loading Libraries
 
 ```{r}
-pacman::p_load(dplyr, tidyverse, ggplot2, ggthemes,ggHoriPlot, lubridate, readxl, knitr,CGPfunctions)
+pacman::p_load(dplyr, tidyverse, ggplot2, ggthemes,ggHoriPlot, lubridate, readxl, knitr,CGPfunctions,plotly)
 ```
 
 ## 2.2. Loading Data
@@ -91,14 +91,15 @@ kable(head(import_export_by_country), 'pipe')
 
 # 3. Visualizations
 
-## 3.1. SlopeGraph
+## 3.1. Slopegraph
 
+The Slopegraph reveals the total trade volumes of these countries with Singapore. It is easier to visualize the trend in this way, as the increase/decrease in volume can be shown by the slope-up/slope-down of the lines.
 
 ```{r fig.width=9, fig.height=10}
-## change to import + export
-
-
+# compute year
 import_export_by_country$Year <- substr(import_export_by_country$Month,1,4)
+
+# group by year, sum up import and export
 import_export_by_country %>%
   group_by(Country, Year) %>%
   summarise(Total=round(sum(Total)/1000/1000,2)) %>%
@@ -109,22 +110,28 @@ import_export_by_country %>%
                 Caption = "Prepared by: Liang Minghao")
 ```
 
-```{r}
-import_export_by_country
-```
+### Insights
 
+- Overall trend: from 2020-2022, the merchandise trade volume between Singapore and the selected countries gradually increase year by year, with China, Malaysia and the US being the top 3 trading partners.
 
+- ASEAN countries: among ASEAN countries, Malaysia is the most dominant trading partners, with Indonesia at the second place, followed by Thailand, Vietnam and Philippines; the trade volume of Cambodia, Myanmar, Brunei, and Laos is relatively less significant.
+
+- China: The slopegraph showed that after 2020, the trade with Mainland China continuously increase in 2021 and 2022.
+
+- The US: The trade volume in 2021 was about the same as that of 2020, followed by a rapid growth in 2022.
 
 ## 3.2. Horizon Graph
 
 ```{r}
+# difference = import - export
+# different +, means deficit; else means surplus
 import_export_by_country$difference=import_export_by_country$Import-import_export_by_country$Export
 import_export_by_country$Month=ym(import_export_by_country$Month)
 
 deficit_by_country <- import_export_by_country[,c('Country','Month','difference')]
 ```
 
-
+The horizon graph displays the **Trade Balance** trend of Singapore over the past 3 years. In the visualization, each row represents one country, and the blue color shows negative trade balance (where import trade volume is greater than export), and the red color shows vice versa. 
 
 ```{r fig.width=9}
 #horizon graph
@@ -133,7 +140,7 @@ deficit_by_country %>%
   ggplot() +
   geom_horizon(aes(x = Month, y = difference), 
                origin = 0,     # set origin = 0 to reflect deficit/surplus by diff. colours
-               horizonscale = 6) +
+               horizonscale = 8) +
   facet_grid(`Country`~.) +
   # year reference line
   geom_vline(xintercept = as.Date("2021-1-1"), colour = "grey40", linetype = "dashed", size = 0.5)+
@@ -145,20 +152,87 @@ deficit_by_country %>%
     strip.text.y = element_text(size = 5, angle = 0, hjust = 0),
     legend.position = 'none',
     axis.text.y = element_blank(),
-    axis.text.x = element_text(size=7),
+    axis.text.x = element_text(size=8),
     axis.title.y = element_blank(),
     axis.title.x = element_blank(),
     axis.ticks.y = element_blank(),
     panel.border = element_blank(),
     plot.title = element_text(size= 20),
     plot.subtitle = element_text(size= 14))+
-    labs(title="Deficit/Surplus of Singapore, 2020-2022",
-         subtitle="Blue = Deficit, Red = Surplus")
-# total deficit/surplus
+    labs(title="Trade Balance of Singapore, 2020-2022",
+         subtitle="Blue = Posit, Red = Surplus")
 ```
 
+### Insights
+
+- Main Importers: The visualization shows that Singapore has much more import than export with Malaysia.
+
+- Main Exporters: Singapore exports more goods than imports to Myanmar, Vietnam, Indonesia and Cambodia.
+
+- China: The visualization shows Singapore registered a deficit with China in the start of 2020, for around 6 months; it is followed by a large surplus in 2021 and back to deficit after Q1, 2022.
+
+- The US: Singapore registered a surplus with the US in the start of 2020; it is followed by deficit in 2021 and 2022.
 
 
+## 3.3. Bubble Graph
 
+The bubble graph shows the dynamic change of trade volume and trade balance of other countries with Singapore. In the visualization, the data points towards the right are the main exporters to Singapore (as there is a high amount of import volume); and the data points towards the top are the main importers. 
 
+The colour shows whether Singapore registers a trade deficit(purple)/surplus(orange) with this country. 
 
+```{r message=FALSE, warning=FALSE, error=FALSE, fig.width=7, fig.height=7}
+import_export_by_country %>%
+  group_by(Country, Year) %>%
+  summarise(
+    Total=round(sum(Total)/1000/1000,2),
+    Import=round(sum(Import)/1000/1000,2),
+    Export=round(sum(Export)/1000/1000,2),
+    Difference=round(sum(difference)/1000/1000,2)
+    ) %>%
+  ungroup() %>%
+  plot_ly(
+    x=~Import,
+    y=~Export,
+    frame=~Year, 
+    size=~Total,
+    color=~Difference,
+    colors='PuOr',
+    showlegend=FALSE,
+    text=~paste(Country,'Total:$', Total),
+    showticklabels = F,
+    type='scatter',
+    mode='markers',
+    marker=list(
+      sizemode='diameter',
+      sizeref=1.2,
+      line = list(width = 2, color = 'black'), 
+      opacity=0.4)
+    ) %>% 
+  layout(title = list(text=paste0(
+    'Import & Export of Singapore with ASEAN countries, US and China',
+    '<br>',
+    '<sup>',
+    'Size shows trade volumes; Color shows deficit(purple)/surplus(orange)',
+    '</sup>'
+    )),
+         margin = list(l = 50, r = 50, b = 100, t = 50),
+         annotations = list(x = 1, y = -.1, text = "Unit: $ in Billions",
+                            xref='paper', yref='paper', showarrow = F, 
+                            xanchor='right', yanchor='auto', xshift=0, yshift=0,
+                            font = list(size = 10))
+         )
+```
+
+### Insights
+
+- From 2020 to 2021, the trade volume of Singapore with all the selected countries increased, except Myanmar and Brunei; this trend coincides with the wave of COVID spread in Brunei, and the protest in Myanmar in Year 2021.
+
+- From 2021 to 2022, the trade volume of Singapore with all the selected countries increased.
+
+- The top 3 exporters of Singapore are China, Malaysia and the US consistently.
+
+- Malaysia overcame the US to be the 2nd importer of Singapore since Year 2021, after Mainland China.
+
+# 4. Conclusions
+
+The overall trades of Singapore with other countries continued to grow after the outbreak of COVID-19 since 2020; this shows that Singapore's economy has been slowly recovering from the impact of the pandemic. Moreover, China, US and Malaysia are still the main trade partners of Singapore, followed by other ASEAN countries. Interestingly, Singapore registers deficit to most of the observed countries (by the bubble chart), indicating that the country is dependent on import goods heavily.

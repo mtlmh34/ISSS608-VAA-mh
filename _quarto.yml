@@ -38,6 +38,8 @@ website:
           href: 'takehome_3/takehome_3.Rmd'
         - text: "Take-Home Exercise 4"
           href: 'takehome_4/takehome_4.Rmd'
+    - text: "Project: Hotel Data Visualization"
+      href: https://visual-analytics-2023jan-group1.netlify.app 
     right:
       - href: index.qmd
         text: Home

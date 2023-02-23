@@ -251,9 +251,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">1. Overview</a></li>
   <li><a href="#data-processing" id="toc-data-processing" class="nav-link" data-scroll-target="#data-processing">2. Data Processing</a>
   <ul class="collapse">
-  <li><a href="#loading-libraries" id="toc-loading-libraries" class="nav-link" data-scroll-target="#loading-libraries">1.1. Loading Libraries</a></li>
-  <li><a href="#loading-data" id="toc-loading-data" class="nav-link" data-scroll-target="#loading-data">1.2. Loading Data</a></li>
-  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">1.3. Data Wrangling</a></li>
+  <li><a href="#loading-libraries" id="toc-loading-libraries" class="nav-link" data-scroll-target="#loading-libraries">2.1. Loading Libraries</a></li>
+  <li><a href="#loading-data" id="toc-loading-data" class="nav-link" data-scroll-target="#loading-data">2.2. Loading Data</a></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">2.3. Data Wrangling</a></li>
+  </ul></li>
+  <li><a href="#visualizations" id="toc-visualizations" class="nav-link" data-scroll-target="#visualizations">3. Visualizations</a>
+  <ul class="collapse">
+  <li><a href="#slopegraph" id="toc-slopegraph" class="nav-link" data-scroll-target="#slopegraph">3.1. SlopeGraph</a></li>
+  <li><a href="#horizon-graph" id="toc-horizon-graph" class="nav-link" data-scroll-target="#horizon-graph">3.2. Horizon Graph</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -313,13 +318,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>2. Data Processing</h1>
 <p>The data used for this take-home exercise is extracted from <a href="https://www.singstat.gov.sg/find-data/search-by-theme/trade-and-investment/merchandise-trade/latest-data">SingStat</a>, in excel spreadsheet format.</p>
 <section id="loading-libraries" class="level2">
-<h2 class="anchored" data-anchor-id="loading-libraries">1.1. Loading Libraries</h2>
+<h2 class="anchored" data-anchor-id="loading-libraries">2.1. Loading Libraries</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(dplyr, tidyverse, ggplot2, lubridate, readxl, knitr,CGPfunctions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(dplyr, tidyverse, ggplot2, ggthemes,ggHoriPlot, lubridate, readxl, knitr,CGPfunctions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="loading-data" class="level2">
-<h2 class="anchored" data-anchor-id="loading-data">1.2. Loading Data</h2>
+<h2 class="anchored" data-anchor-id="loading-data">2.2. Loading Data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>import <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">'/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/outputFile.xlsx'</span>, <span class="at">sheet=</span><span class="st">'T1'</span>,</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">skip =</span> <span class="dv">9</span>, <span class="at">n_max =</span> <span class="dv">120</span>)</span>
@@ -328,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="data-wrangling" class="level2">
-<h2 class="anchored" data-anchor-id="data-wrangling">1.3. Data Wrangling</h2>
+<h2 class="anchored" data-anchor-id="data-wrangling">2.3. Data Wrangling</h2>
 <p>In data wrangling, the following tasks are performed: - focus on only trades with ASEAN countries, US and China - focus on only data in 2020-2022 - transpose the data to long table - join import and export data</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>trade_countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Brunei Darussalam"</span>,<span class="st">"Indonesia"</span>,<span class="st">"Malaysia"</span>,<span class="st">"Philippines"</span>,                        </span>
@@ -354,7 +359,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">by=</span><span class="fu">join_by</span>(<span class="st">'Country'</span>, <span class="st">'Month'</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Month=</span><span class="fu">substr</span>(<span class="fu">ym</span>(Month),<span class="dv">1</span>,<span class="dv">7</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Country,Month) <span class="sc">%&gt;%</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">'Import'</span> <span class="ot">=</span> <span class="st">'Thousands.x'</span>, <span class="st">'Export'</span> <span class="ot">=</span> <span class="st">'Thousands.y'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">'Import'</span> <span class="ot">=</span> <span class="st">'Thousands.x'</span>, <span class="st">'Export'</span> <span class="ot">=</span> <span class="st">'Thousands.y'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>import_export_by_country<span class="sc">$</span>Total <span class="ot">&lt;-</span> import_export_by_country<span class="sc">$</span>Import<span class="sc">+</span>import_export_by_country<span class="sc">$</span>Export</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The dataframe after pre-processing is as follows:</p>
 <div class="cell">
@@ -367,6 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <th style="text-align: left;">Month</th>
 <th style="text-align: right;">Import</th>
 <th style="text-align: right;">Export</th>
+<th style="text-align: right;">Total</th>
 </tr>
 </thead>
 <tbody>
@@ -375,76 +383,130 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: left;">2020-01</td>
 <td style="text-align: right;">278270</td>
 <td style="text-align: right;">92138</td>
+<td style="text-align: right;">370408</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Brunei Darussalam</td>
 <td style="text-align: left;">2020-02</td>
 <td style="text-align: right;">242796</td>
 <td style="text-align: right;">98823</td>
+<td style="text-align: right;">341619</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Brunei Darussalam</td>
 <td style="text-align: left;">2020-03</td>
 <td style="text-align: right;">70923</td>
 <td style="text-align: right;">92062</td>
+<td style="text-align: right;">162985</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Brunei Darussalam</td>
 <td style="text-align: left;">2020-04</td>
 <td style="text-align: right;">96185</td>
 <td style="text-align: right;">105793</td>
+<td style="text-align: right;">201978</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Brunei Darussalam</td>
 <td style="text-align: left;">2020-05</td>
 <td style="text-align: right;">49763</td>
 <td style="text-align: right;">64689</td>
+<td style="text-align: right;">114452</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Brunei Darussalam</td>
 <td style="text-align: left;">2020-06</td>
 <td style="text-align: right;">36456</td>
 <td style="text-align: right;">114980</td>
+<td style="text-align: right;">151436</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
+</section>
+</section>
+<section id="visualizations" class="level1">
+<h1>3. Visualizations</h1>
+<section id="slopegraph" class="level2">
+<h2 class="anchored" data-anchor-id="slopegraph">3.1. SlopeGraph</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>import_export_by_country_longer <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(import_export_by_country,<span class="at">cols=</span><span class="fu">ends_with</span>(<span class="st">'port'</span>), <span class="at">names_to =</span> <span class="st">'Type'</span>, <span class="at">values_to =</span> <span class="st">'Thousands'</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>import_export_by_country_longer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 792 × 4
-   Country           Month   Type   Thousands
-   &lt;chr&gt;             &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt;
- 1 Brunei Darussalam 2020-01 Import    278270
- 2 Brunei Darussalam 2020-01 Export     92138
- 3 Brunei Darussalam 2020-02 Import    242796
- 4 Brunei Darussalam 2020-02 Export     98823
- 5 Brunei Darussalam 2020-03 Import     70923
- 6 Brunei Darussalam 2020-03 Export     92062
- 7 Brunei Darussalam 2020-04 Import     96185
- 8 Brunei Darussalam 2020-04 Export    105793
- 9 Brunei Darussalam 2020-05 Import     49763
-10 Brunei Darussalam 2020-05 Export     64689
-# … with 782 more rows</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>import_export_by_country_longer <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Month =</span> <span class="fu">factor</span>(Month)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">'01'</span>,Month)<span class="sc">|</span><span class="fu">grepl</span>(<span class="st">'06'</span>,Month)<span class="sc">|</span>Month<span class="sc">==</span><span class="st">'2022-12'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">newggslopegraph</span>(Month, Thousands, Country,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">Title =</span> <span class="st">"Import and Export of ASEAN, US and CN (in $'000)"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">SubTitle =</span> <span class="st">"2020 - 2022, semi-annual trend"</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">Caption =</span> <span class="st">"Prepared by: Liang Minghao"</span>) <span class="sc">+</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## change to import + export</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>import_export_by_country<span class="sc">$</span>Year <span class="ot">&lt;-</span> <span class="fu">substr</span>(import_export_by_country<span class="sc">$</span>Month,<span class="dv">1</span>,<span class="dv">4</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>import_export_by_country <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Country, Year) <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Total=</span><span class="fu">round</span>(<span class="fu">sum</span>(Total)<span class="sc">/</span><span class="dv">1000</span><span class="sc">/</span><span class="dv">1000</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> <span class="fu">factor</span>(Year)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">newggslopegraph</span>(Year, Total, Country,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">Title =</span> <span class="st">"Total Trade Volume with ASEAN countries, US and CN (in Billions)"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">SubTitle =</span> <span class="st">"2020 - 2022"</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">Caption =</span> <span class="st">"Prepared by: Liang Minghao"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="takehome_4_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="1536"></p>
+<p><img src="takehome_4_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="864"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#horizon graph</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>import_export_by_country</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 396 × 6
+   Country           Month   Import Export  Total Year 
+   &lt;chr&gt;             &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;
+ 1 Brunei Darussalam 2020-01 278270  92138 370408 2020 
+ 2 Brunei Darussalam 2020-02 242796  98823 341619 2020 
+ 3 Brunei Darussalam 2020-03  70923  92062 162985 2020 
+ 4 Brunei Darussalam 2020-04  96185 105793 201978 2020 
+ 5 Brunei Darussalam 2020-05  49763  64689 114452 2020 
+ 6 Brunei Darussalam 2020-06  36456 114980 151436 2020 
+ 7 Brunei Darussalam 2020-07  25927  87799 113726 2020 
+ 8 Brunei Darussalam 2020-08  36769  93730 130499 2020 
+ 9 Brunei Darussalam 2020-09  67999  78402 146401 2020 
+10 Brunei Darussalam 2020-10  54504  81584 136088 2020 
+# … with 386 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="horizon-graph" class="level2">
+<h2 class="anchored" data-anchor-id="horizon-graph">3.2. Horizon Graph</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>import_export_by_country<span class="sc">$</span>difference<span class="ot">=</span>import_export_by_country<span class="sc">$</span>Import<span class="sc">-</span>import_export_by_country<span class="sc">$</span>Export</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>import_export_by_country<span class="sc">$</span>Month<span class="ot">=</span><span class="fu">ym</span>(import_export_by_country<span class="sc">$</span>Month)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>deficit_by_country <span class="ot">&lt;-</span> import_export_by_country[,<span class="fu">c</span>(<span class="st">'Country'</span>,<span class="st">'Month'</span>,<span class="st">'difference'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#horizon graph</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>deficit_by_country <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_horizon</span>(<span class="fu">aes</span>(<span class="at">x =</span> Month, <span class="at">y =</span> difference), </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">origin =</span> <span class="dv">0</span>,     <span class="co"># set origin = 0 to reflect deficit/surplus by diff. colours</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">horizonscale =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="st">`</span><span class="at">Country</span><span class="st">`</span><span class="sc">~</span>.) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># year reference line</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">as.Date</span>(<span class="st">"2021-1-1"</span>), <span class="at">colour =</span> <span class="st">"grey40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">size =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">as.Date</span>(<span class="st">"2022-1-1"</span>), <span class="at">colour =</span> <span class="st">"grey40"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">size =</span> <span class="fl">0.5</span>)<span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_few</span>() <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_hcl</span>(<span class="at">palette =</span> <span class="st">'RdBu'</span>) <span class="sc">+</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.spacing.y=</span><span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"lines"</span>), </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">5</span>, <span class="at">angle =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">0</span>),</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">'none'</span>,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">7</span>),</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span> <span class="dv">20</span>),</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size=</span> <span class="dv">14</span>))<span class="sc">+</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Deficit/Surplus of Singapore, 2020-2022"</span>,</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle=</span><span class="st">"Blue = Deficit, Red = Surplus"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="takehome_4_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="864"></p>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># total deficit/surplus</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

@@ -31,13 +31,13 @@ The COVID-19 pandemic has significantly impacted the global trade and economy si
 
 The data used for this take-home exercise is extracted from [SingStat](https://www.singstat.gov.sg/find-data/search-by-theme/trade-and-investment/merchandise-trade/latest-data), in excel spreadsheet format.
 
-## 1.1. Loading Libraries
+## 2.1. Loading Libraries
 
 ```{r}
-pacman::p_load(dplyr, tidyverse, ggplot2, lubridate, readxl, knitr,CGPfunctions)
+pacman::p_load(dplyr, tidyverse, ggplot2, ggthemes,ggHoriPlot, lubridate, readxl, knitr,CGPfunctions)
 ```
 
-## 1.2. Loading Data
+## 2.2. Loading Data
 
 ```{r}
 import <- read_excel('/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/outputFile.xlsx', sheet='T1',
@@ -46,7 +46,7 @@ export <- read_excel('/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/outputFile.xl
                      skip = 9, n_max = 120)
 ```
 
-## 1.3. Data Wrangling
+## 2.3. Data Wrangling
 
 In data wrangling, the following tasks are performed:
  - focus on only trades with ASEAN countries, US and China
@@ -80,6 +80,8 @@ import_export_by_country <- left_join(import_by_country,export_by_country,
   arrange(Country,Month) %>%
   rename('Import' = 'Thousands.x', 'Export' = 'Thousands.y')
 
+import_export_by_country$Total <- import_export_by_country$Import+import_export_by_country$Export
+
 ```
  
 The dataframe after pre-processing is as follows:
@@ -87,29 +89,75 @@ The dataframe after pre-processing is as follows:
 kable(head(import_export_by_country), 'pipe')
 ```
 
+# 3. Visualizations
+
+## 3.1. SlopeGraph
+
+
+```{r fig.width=9, fig.height=10}
+## change to import + export
+
+
+import_export_by_country$Year <- substr(import_export_by_country$Month,1,4)
+import_export_by_country %>%
+  group_by(Country, Year) %>%
+  summarise(Total=round(sum(Total)/1000/1000,2)) %>%
+  mutate(Year = factor(Year)) %>%
+  newggslopegraph(Year, Total, Country,
+                Title = "Total Trade Volume with ASEAN countries, US and CN (in Billions)",
+                SubTitle = "2020 - 2022",
+                Caption = "Prepared by: Liang Minghao")
+```
 
 ```{r}
-import_export_by_country_longer <- pivot_longer(import_export_by_country,cols=ends_with('port'), names_to = 'Type', values_to = 'Thousands')
-import_export_by_country_longer
+import_export_by_country
 ```
 
 
-```{r fig.width=16, fig.height=12}
-import_export_by_country_longer %>% 
-  mutate(Month = factor(Month)) %>%
-  filter(grepl('01',Month)|grepl('06',Month)|Month=='2022-12') %>%
-  newggslopegraph(Month, Thousands, Country,
-                Title = "Import and Export of ASEAN, US and CN (in $'000)",
-                SubTitle = "2020 - 2022, semi-annual trend",
-                Caption = "Prepared by: Liang Minghao") +
-  facet_wrap(~Type)
 
+## 3.2. Horizon Graph
+
+```{r}
+import_export_by_country$difference=import_export_by_country$Import-import_export_by_country$Export
+import_export_by_country$Month=ym(import_export_by_country$Month)
+
+deficit_by_country <- import_export_by_country[,c('Country','Month','difference')]
 ```
 
 
-```{r}
+
+```{r fig.width=9}
 #horizon graph
+
+deficit_by_country %>%
+  ggplot() +
+  geom_horizon(aes(x = Month, y = difference), 
+               origin = 0,     # set origin = 0 to reflect deficit/surplus by diff. colours
+               horizonscale = 6) +
+  facet_grid(`Country`~.) +
+  # year reference line
+  geom_vline(xintercept = as.Date("2021-1-1"), colour = "grey40", linetype = "dashed", size = 0.5)+
+  geom_vline(xintercept = as.Date("2022-1-1"), colour = "grey40", linetype = "dashed", size = 0.5)+
+  theme_few() +
+  scale_fill_hcl(palette = 'RdBu') +
+  theme(
+    panel.spacing.y=unit(0, "lines"), 
+    strip.text.y = element_text(size = 5, angle = 0, hjust = 0),
+    legend.position = 'none',
+    axis.text.y = element_blank(),
+    axis.text.x = element_text(size=7),
+    axis.title.y = element_blank(),
+    axis.title.x = element_blank(),
+    axis.ticks.y = element_blank(),
+    panel.border = element_blank(),
+    plot.title = element_text(size= 20),
+    plot.subtitle = element_text(size= 14))+
+    labs(title="Deficit/Surplus of Singapore, 2020-2022",
+         subtitle="Blue = Deficit, Red = Surplus")
+# total deficit/surplus
 ```
+
+
 
 
 

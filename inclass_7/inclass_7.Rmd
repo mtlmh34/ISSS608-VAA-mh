@@ -1,0 +1,120 @@
+---
+title: "In-Class Exercise 7"
+categories: in-class exercise
+description: |
+  Visualize geospatial data with Tableau Desktop/R.
+author:
+  - name: Liang Minghao
+    affiliation: SMU, MITB
+    affiliation_url: https://scis.smu.edu.sg/master-it-business
+date: "25 Feb, 2023"
+preview: inclass_7_1.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 3
+---
+
+## Import Packages
+
+```{r}
+pacman::p_load(sf, tmap, tidyverse)
+```
+
+## Read Data
+
+```{r}
+sgpools <- read_csv("/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/aspatial/SGPools_svy21.csv")
+
+
+mpsz <- st_read(dsn = "/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/geospatial", 
+                layer = "MP14_SUBZONE_WEB_PL")
+popdata <- read_csv("/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/aspatial/respopagesextod2011to2020.csv")
+```
+## Geospatial Data Wrangling
+
+```{r}
+# convert to sf object
+sgpools_sf <- st_as_sf(sgpools, 
+                       coords = c("XCOORD", "YCOORD"),
+                       crs= 3414) # code for Singapore SVY21 Projected Coordinate System
+```
+
+## Proportional Symbol Map
+
+### Single Prop. Sym. Map
+
+```{r}
+tmap_mode('view');
+tm_shape(sgpools_sf)+
+tm_bubbles(col = "red",
+           size = 1,
+           border.col = "black",
+           border.lwd = 1)
+tmap_mode('plot')
+```
+
+### Facet
+
+```{r}
+tm_shape(sgpools_sf) +
+  tm_bubbles(col = "OUTLET TYPE", 
+          size = "Gp1Gp2 Winnings",
+          border.col = "black",
+          border.lwd = 1) +
+  tm_facets(by= "OUTLET TYPE",
+            nrow = 1,
+            sync = TRUE)
+```
+
+## Chorpleth Mapping
+
+### Data Wrangling of Pop data
+
+```{r}
+popdata2020 <- popdata %>%
+  filter(Time == 2020) %>%
+  group_by(PA, SZ, AG) %>%
+  summarise(`POP` = sum(`Pop`)) %>%
+  ungroup()%>%
+  pivot_wider(names_from=AG, 
+              values_from=POP) %>%
+  mutate(YOUNG = rowSums(.[3:6])
+         +rowSums(.[12])) %>%
+mutate(`ECONOMY ACTIVE` = rowSums(.[7:11])+
+rowSums(.[13:15]))%>%
+mutate(`AGED`=rowSums(.[16:21])) %>%
+mutate(`TOTAL`=rowSums(.[3:21])) %>%  
+mutate(`DEPENDENCY` = (`YOUNG` + `AGED`)
+/`ECONOMY ACTIVE`) %>%
+  select(`PA`, `SZ`, `YOUNG`, 
+       `ECONOMY ACTIVE`, `AGED`, 
+       `TOTAL`, `DEPENDENCY`)
+```
+
+
+### Joining the attribute data and geospatial data
+
+```{r}
+popdata2020 <- popdata2020 %>%
+  mutate_at(.vars = vars(PA, SZ), 
+          .funs = funs(toupper)) %>% # toupper: lower to upper case
+  filter(`ECONOMY ACTIVE` > 0)
+
+#left join spatial data with pop data
+mpsz_pop2020 <- left_join(mpsz, popdata2020,
+                          by = c("SUBZONE_N" = "SZ"))
+```
+
+
+```{r}
+#write_rds(mpsz_pop2020, "data/rds/mpszpop2020.rds")
+```
+
+```{r}
+tmap_mode("plot")
+qtm(mpsz_pop2020, 
+    fill = "DEPENDENCY")
+```
+

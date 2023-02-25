@@ -28,6 +28,8 @@ website:
           href: 'inclass_5/inclass_5.Rmd'
         - text: "In-Class 6: Time Series Data Visualization"
           href: 'inclass_6/inclass_6.Rmd'
+        - text: "In-Class 7: Geospatial Data Visualization"
+          href: 'inclass_7/inclass_7.Rmd'
     - text: "Take-home Exercise"
       menu:
         - text: "Take-Home Exercise 1"

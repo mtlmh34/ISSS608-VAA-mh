@@ -276,6 +276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">Load Data</a></li>
   <li><a href="#data-preprocessing" id="toc-data-preprocessing" class="nav-link" data-scroll-target="#data-preprocessing">Data Preprocessing</a></li>
   <li><a href="#create-graph" id="toc-create-graph" class="nav-link" data-scroll-target="#create-graph">Create Graph</a></li>
+  <li><a href="#visualization-of-networks-with-modification-of-layouts-edges-and-nodes" id="toc-visualization-of-networks-with-modification-of-layouts-edges-and-nodes" class="nav-link" data-scroll-target="#visualization-of-networks-with-modification-of-layouts-edges-and-nodes">Visualization of networks with modification of layouts, edges and nodes</a></li>
   </ul>
 </nav>
     </div>
@@ -437,6 +438,27 @@ the `.groups` argument.</code></pre>
 2     1     2 Monday       2
 3     1     2 Tuesday      3
 # … with 1,369 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="visualization-of-networks-with-modification-of-layouts-edges-and-nodes" class="level1">
+<h1>Visualization of networks with modification of layouts, edges and nodes</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggraph</span>(GAStech_graph, </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">layout =</span> <span class="st">"nicely"</span>) <span class="sc">+</span> <span class="co"># Layout</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_edge_link</span>(<span class="fu">aes</span>(<span class="at">width=</span>Weight),  <span class="co"># Use weight as the width of edge</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_edge_width</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> Department),  <span class="co"># Use Department as different colours of nodes</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">theme_graph</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` in the `default_aes` field and elsewhere instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="inclass_8_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 

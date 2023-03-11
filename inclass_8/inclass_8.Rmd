@@ -1,0 +1,17 @@
+---
+title: "In-Class Exercise 8"
+categories: in-class exercise
+description: |
+  Visualize network graph data with R.
+author:
+  - name: Liang Minghao
+    affiliation: SMU, MITB
+    affiliation_url: https://scis.smu.edu.sg/master-it-business
+date: "11 Mar, 2023"
+preview: inclass_7_1.jpg
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 3
+---

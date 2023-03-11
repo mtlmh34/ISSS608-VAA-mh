@@ -32,6 +32,7 @@ mpsz <- st_read(dsn = "/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/geospatial",
                 layer = "MP14_SUBZONE_WEB_PL")
 popdata <- read_csv("/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/aspatial/respopagesextod2011to2020.csv")
 ```
+
 ## Geospatial Data Wrangling
 
 ```{r}
@@ -93,7 +94,6 @@ mutate(`DEPENDENCY` = (`YOUNG` + `AGED`)
        `TOTAL`, `DEPENDENCY`)
 ```
 
-
 ### Joining the attribute data and geospatial data
 
 ```{r}
@@ -107,7 +107,6 @@ mpsz_pop2020 <- left_join(mpsz, popdata2020,
                           by = c("SUBZONE_N" = "SZ"))
 ```
 
-
 ```{r}
 #write_rds(mpsz_pop2020, "data/rds/mpszpop2020.rds")
 ```
@@ -117,4 +116,3 @@ tmap_mode("plot")
 qtm(mpsz_pop2020, 
     fill = "DEPENDENCY")
 ```
-

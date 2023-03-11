@@ -15,3 +15,50 @@ output:
     toc: true
     toc_depth: 3
 ---
+
+# Load Packages
+
+```{r}
+pacman::p_load(igraph, tidygraph, ggraph, 
+               visNetwork, lubridate, clock,
+               tidyverse, graphlayouts)
+```
+
+# Load Data
+
+```{r}
+GAStech_nodes <- read_csv("/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/s8/GAStech_email_node.csv")
+GAStech_edges <- read_csv("/Users/minghaooo/mtlmh34/ISSS608-VAA-mh/Data/s8/GAStech_email_edge-v2.csv")
+
+glimpse(GAStech_nodes)
+glimpse(GAStech_edges)
+```
+
+# Data Preprocessing
+
+```{r}
+GAStech_edges <- GAStech_edges %>%
+  mutate(SendDate = dmy(SentDate)) %>%     #set datatype of SentDate to Date
+  mutate(Weekday = wday(SentDate,          #extract days in a week
+                        label = TRUE,
+                        abbr = FALSE))
+
+# aggreate number of emails between 2 nodes on each weekday
+GAStech_edges_aggregated <- GAStech_edges %>%
+  filter(MainSubject == "Work related") %>%
+  group_by(source, target, Weekday) %>%
+    summarise(Weight = n()) %>%
+  filter(source!=target) %>%
+  filter(Weight > 1) %>%
+  ungroup()
+```
+
+# Create Graph
+
+
+```{r}
+GAStech_graph <- tbl_graph(nodes = GAStech_nodes,
+                           edges = GAStech_edges_aggregated, 
+                           directed = TRUE)
+GAStech_graph
+```

@@ -133,3 +133,123 @@ ggplot(sales_report, aes(x=Month, y=Sales)) +
         axis.ticks = element_blank(), strip.text = element_blank())
 ```
 
+## 3. Bullet chart using `gt`
+
+```{r}
+product %>%
+  gt::gt() %>%
+  gt_plt_bullet(column = current, 
+              target = target, 
+              width = 60,
+              palette = c("lightblue", 
+                          "black")) %>%
+  gt_theme_538()
+```
+
+
+## 4. `gtExtras`
+
+### Data Prep
+
+```{r}
+report <- coffeechain %>%
+  mutate(Year = year(Date)) %>%
+  filter(Year == "2013") %>%
+  mutate (Month = month(Date, 
+                        label = TRUE, 
+                        abbr = TRUE)) %>%
+  group_by(Product, Month) %>%
+  summarise(Sales = sum(Sales)) %>%
+  ungroup()
+```
+
+Convert sales to a list column
+
+```{r}
+# group by product, convert the report data.frame into list columns.
+report %>%
+  group_by(Product) %>%
+  summarize('Monthly Sales' = list(Sales), 
+            .groups = "drop")
+```
+
+Plotting a list column
+
+```{r}
+report %>%
+  group_by(Product) %>%
+  summarize('Monthly Sales' = list(Sales), 
+            .groups = "drop") %>%
+   gt() %>%
+   gt_plt_sparkline('Monthly Sales')
+```
+
+```{r}
+sales <- report %>% 
+  group_by(Product) %>% 
+  summarise("Min" = min(Sales, na.rm = T),
+            "Max" = max(Sales, na.rm = T),
+            "Average" = mean(Sales, na.rm = T)
+            ) %>%
+  gt() %>%
+  fmt_number(columns = 4,
+    decimals = 2)
+sales
+```
+
+### Join report and sparklines
+
+```{r}
+spark <- report %>%
+  group_by(Product) %>%
+  summarize('Monthly Sales' = list(Sales), 
+            .groups = "drop")
+
+sales <- report %>% 
+  group_by(Product) %>% 
+  summarise("Min" = min(Sales, na.rm = T),
+            "Max" = max(Sales, na.rm = T),
+            "Average" = mean(Sales, na.rm = T)
+            )
+
+sales_data = left_join(sales, spark)
+```
+
+### Plot the Report with Sparklines
+
+```{r}
+sales_data %>%
+  gt() %>%
+  gt_plt_sparkline('Monthly Sales')
+```
+
+### Plot report, sparklines with bullet charts
+
+Prep data for bullet, join with sales report
+
+```{r}
+bullet <- coffeechain %>%
+  filter(Date >= "2013-01-01") %>%
+  group_by(`Product`) %>%
+  summarise(`Target` = sum(`Budget Sales`),
+            `Actual` = sum(`Sales`)) %>%
+  ungroup()
+
+sales_data = sales_data %>%
+  left_join(bullet)
+```
+
+Plot with sparklines and bullet
+
+```{r}
+sales_data %>%
+  gt() %>%
+  gt_plt_sparkline('Monthly Sales') %>%
+  gt_plt_bullet(column = Actual, 
+                target = Target, 
+                width = 28,
+                palette = c("lightblue", 
+                          "black")) %>%
+  gt_theme_538()
+```
+

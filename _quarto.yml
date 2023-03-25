@@ -16,6 +16,8 @@ website:
           href: 'handson_4/handson_4.Rmd'
         - text: 'Hands-on Exercise 8'
           href: 'handson_8/handson_8.Rmd'
+        - text: 'Hands-on Exercise 10'
+          href: 'handson_10/handson_10.Rmd'
     - text: "In-Class Exercise"
       menu:
         - text: "In-Class 1: Tableau Visualisation"

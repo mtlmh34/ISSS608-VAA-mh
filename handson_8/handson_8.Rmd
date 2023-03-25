@@ -101,10 +101,7 @@ GAStech_graph %>%
 
 # 3. Visualization of networks
 
-As in all network graph, there are three main aspects to a ggraph’s network graph, they are:
-  - Nodes,
-  - Edges,
-  - Layouts.
+As in all network graph, there are three main aspects to a ggraph's network graph, they are: - Nodes, - Edges, - Layouts.
 
 ## 3.1. Default network graph
 
@@ -115,6 +112,7 @@ ggraph(GAStech_graph) +
 ```
 
 ## 3.2. Changing theme
+
 ```{r}
 g <- ggraph(GAStech_graph) + 
   geom_edge_link(aes()) +
@@ -133,6 +131,7 @@ g <- ggraph(GAStech_graph) +
 g + theme_graph(background = 'grey10',
                 text_colour = 'white')
 ```
+
 ## 3.4. Changing layouts
 
 Layouts for `ggraph()`: star, circle, nicely (default), dh, gem, graphopt, grid, mds, spahere, randomly, fr, kk, drl and lgl.
@@ -145,6 +144,7 @@ g <- ggraph(GAStech_graph,
 
 g + theme_graph()
 ```
+
 ## 3.5. Modifying nodes
 
 ```{r}
@@ -157,7 +157,6 @@ g <- ggraph(GAStech_graph,
 
 g + theme_graph()
 ```
-
 
 ## 3.6. Modifying edges
 
@@ -209,4 +208,3 @@ g + facet_edges(~Weekday) +
                 border = TRUE) +
   theme(legend.position = 'bottom')
 ```
-

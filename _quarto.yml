@@ -39,7 +39,7 @@ website:
         - text: "In-Class 9: Information Dashboard Design"
           href: 'inclass_9/inclass_9.Rmd'
         - text: "In-Class 10: Financial Data Visualization"
-          href: 'inclass_10/inclass_10.Rmd'
+          href: 'handson_10/handson_10.Rmd'
     - text: "Take-home Exercise"
       menu:
         - text: "Take-Home Exercise 1"

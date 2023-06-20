@@ -8,8 +8,6 @@ website:
       menu: 
         - text: 'Hands-on Exercise 1'
           href: 'handson_1/handson_1.Rmd'
-        - text: 'Hands-on Exercise 2'
-          href: 'handson_2/hands_on2.qmd'
         - text: 'Hands-on Exercise 3'
           href: 'handson_3/hands_on3.qmd'
         - text: 'Hands-on Exercise 4'
